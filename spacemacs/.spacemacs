@@ -359,11 +359,6 @@ you should place your code here."
   (setq flycheck-checker-error-threshold 500
         fancy-battery-show-percentage nil
         fancy-battery-mode nil)
-  (setq-default git-magit-status-fullscreen t)
-  ;; project indexing is expensive - hence caching it
-  (setq projectile-enable-caching t)
-  (setq projectile-file-exists-remote-cache-expire nil)
-  (setq projectile-mode-line "Projectile")
   ;; One thing to note - `projectile` should be
   ;; As of writing this doc - it seems that `projectile-find-file'
   ;; depends entirely on the `projectile-generic-command' which
