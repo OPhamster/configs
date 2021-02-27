@@ -350,6 +350,7 @@ you should place your code here."
   ;; KEYBINDINGS
   (global-set-key (kbd "C-+") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
+  (global-set-key (kbd "M-/", 'counsel-rg))
   ;; BEHAVIOR CHANGES
   (add-hook 'find-file-hook
             (lambda ()
