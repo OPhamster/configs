@@ -281,6 +281,10 @@ bindsym $mod+9 exec --no-startup-id i3lock -f --color=34495e
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id emacs --daemon
+# TODO: make pulseaudio a service instead - this is less of a startup
+#       app and more of a service - and I will not need to actively interact
+#       with it while the system is alive.
+exec --no-startup-id pulseaudio -D
 # multi-monitor setup. Only deals with 1 additional monitor
 exec --no-startup-id /usr/local/bin/dual
 exec --no-startup-id nm-applet
@@ -294,7 +298,7 @@ exec_always --no-startup-id fix_xcursor
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-#exec --no-startup-id manjaro-hello
+# exec --no-startup-id manjaro-hello
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

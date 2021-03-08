@@ -74,7 +74,6 @@ values."
      lsp
      (ruby :variables
            ruby-insert-encoding-magic-comment nil
-           ruby-backend 'lsp
            ruby-version-manager 'rvm)
      (treemacs :variables
                treemacs-use-filewatch-mode t)
@@ -373,12 +372,12 @@ you should place your code here."
   ;;   1. look in the correct path for the `solargraph` executable via
   ;;      `tramp-remote-path'
   ;;   2. tell tramp what to run via `solargraph stdio'
-  (with-eval-after-load 'lsp-mode
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection '("solargraph" "stdio"))
-                      :major-modes '(ruby-mode)
-                      :remote? t
-                      :server-id 'solargraph-remote)))
+  ;; (with-eval-after-load 'lsp-mode
+  ;;   (lsp-register-client
+  ;;    (make-lsp-client :new-connection (lsp-tramp-connection '("solargraph" "stdio"))
+  ;;                     :major-modes '(ruby-mode)
+  ;;                     :remote? t
+  ;;                     :server-id 'solargraph-remote)))
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path)))
 
