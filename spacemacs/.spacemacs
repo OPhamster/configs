@@ -349,7 +349,9 @@ you should place your code here."
   ;; KEYBINDINGS
   (global-set-key (kbd "C-+") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
-  (global-set-key (kbd "M-/", 'counsel-rg))
+  (global-set-key (kbd "M-/") 'counsel-rg)
+  (spacemacs/declare-prefix "o" "user")
+  (spacemacs/set-leader-keys "oc" 'imenu-list)
   ;; BEHAVIOR CHANGES
   (add-hook 'find-file-hook
             (lambda ()
