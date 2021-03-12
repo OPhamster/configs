@@ -41,11 +41,11 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-# exec --no-startup-id pulseaudio
+exec_always --no-startup-id volumeicon
+# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+# exec --no-startup-id pulseaudio --start
+# bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -186,6 +186,8 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
+assign [class="Spotify"] $ws4
+assign [class="Firefox"] $ws2
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
@@ -200,8 +202,6 @@ for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
@@ -281,12 +281,6 @@ bindsym $mod+9 exec --no-startup-id i3lock -f --color=34495e
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id emacs --daemon
-# TODO: make pulseaudio a service instead - this is less of a startup
-#       app and more of a service - and I will not need to actively interact
-#       with it while the system is alive.
-exec --no-startup-id pulseaudio -D
-# multi-monitor setup. Only deals with 1 additional monitor
-exec --no-startup-id /usr/local/bin/dual
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -295,6 +289,8 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 30 -locker i3lock -f --color=34495e
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+# Multi-Monitor Support
+exec_always --no-startup-id /usr/local/bin/dual.sh
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
