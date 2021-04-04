@@ -32,7 +32,7 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id dmenu_recency -h 22 -fn "Iosevka:Light:pixelsize=13" -sb "#9C88FF"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -104,8 +104,6 @@ bindsym $mod+Shift+Right move right
 workspace_auto_back_and_forth no
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-
-
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -256,6 +254,22 @@ mode "$split_orientation" {
     bindsym dollar split h; exec notify-send 'split vertically', mode "default"
     bindsym semicolon split v; exec notify-send 'split horizontally', mode "default"
     bindsym q split toggle; exec notify-send 'split toggle', mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Set workspace movement mode
+bindsym $mod+i mode "$move_workspace"
+set $move_workspace (h)left, (j)down, (k)up, (l)right, (c)urrent (p)rimary <output>
+mode "$move_workspace" {
+    bindsym h move workspace to output left; exec notify-send 'move workspace to left output', mode "default"
+    bindsym j move workspace to output down; exec notify-send 'move workspace to down output', mode "default"
+    bindsym k move workspace to output up; exec notify-send 'move workspace to up output', mode "default"
+    bindsym l move workspace to output right; exec notify-send 'move workspace to right output', mode "default"
+    bindsym c move workspace to output current; exec notify-send 'move workspace to current output', mode "default"
+    bindsym p move workspace to output primary; exec notify-send 'move workspace to primary output', mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
