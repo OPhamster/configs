@@ -276,6 +276,20 @@ mode "$move_workspace" {
     bindsym Escape mode "default"
 }
 
+# Media Playback mode
+bindsym $mod+q mode "$media_playback"
+set $media_playback (p)lay/pause (l)next (h)previous
+mode "$media_playback" {
+    # don't need to notify-send for the track since most players already do that
+    bindsym p exec playerctl play-pause; exec notify-send "player play/paused", mode "default"
+    bindsym h exec playerctl previous
+    bindsym l exec playerctl next
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
