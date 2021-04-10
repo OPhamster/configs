@@ -277,13 +277,14 @@ mode "$move_workspace" {
 }
 
 # Media Playback mode
+set $player spotify
 bindsym $mod+q mode "$media_playback"
-set $media_playback (p)lay/pause (l)next (h)previous
+set $media_playback (p)lay/pause (l)next (h)previous [Only Applies to Spotify]
 mode "$media_playback" {
     # don't need to notify-send for the track since most players already do that
-    bindsym p exec playerctl play-pause; exec notify-send "player play/paused", mode "default"
-    bindsym h exec playerctl previous
-    bindsym l exec playerctl next
+    bindsym p exec playerctl -p $player play-pause; exec notify-send "$player play/paused", mode "default"
+    bindsym h exec playerctl -p $player previous
+    bindsym l exec playerctl -p $player next
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
