@@ -183,7 +183,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # spotify doesn't seem to work with `assign` but
 # does seem to work with `for_window`
 for_window [class="Spotify"] move to workspace $ws4
-assign [class="firefox"] $ws2
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
