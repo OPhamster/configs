@@ -31,8 +31,8 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency -h 22 -fn "Iosevka:Light:pixelsize=13" -sb "#9C88FF"
+# start program launcher - start with the runner mode
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
