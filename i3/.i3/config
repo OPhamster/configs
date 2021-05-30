@@ -33,6 +33,7 @@ bindsym $mod+Shift+q kill
 
 # start program launcher - start with the runner mode
 bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym Mod1+Tab exec --no-startup-id rofi -show window
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
