@@ -59,7 +59,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
 bindsym $mod+F1 exec emacsclient -c -a=""
 bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F3 exec thunar
 bindsym $mod+F5 exec spotify
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -369,6 +369,7 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
+# Color Ref: https://material.io/resources/color/#!/?view.left=0&view.right=0
 bar {
 	i3bar_command i3bar
 	status_command i3status
@@ -383,16 +384,16 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background #2f3640
+        background #212121
         statusline #f5f6fa
         separator  #7f8fa6
 
-# 	                   border  backgr. text
-        focused_workspace  #9C88FF #9C88FF #F5F6FA
+ #    	                   border  backgr. text
+        focused_workspace  #7b1fa2 #7b1fa2 #F5F6FA
         active_workspace   #8C7AE6 #8C7AE6 #F5F6FA
-        inactive_workspace #40739E #40739E #F5F6FA
-        binding_mode       #16A085 #2C2C2C #F5F6FA
-        urgent_workspace   #E84118 #E84118 #F5F6FA
+        inactive_workspace #455A64 #455A64 #F5F6FA
+        binding_mode       #1de9b6 #1de9b6 #212121
+        urgent_workspace   #f06292 #f06292 #F5F6FA
     }
 }
 
@@ -401,10 +402,10 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 #  class                   border  backgr. text    indic.   child_border
-  client.focused          #9C88FF #9C88FF #F5F6FA #2C3E50
+  client.focused          #7b1fa2 #7b1fa2 #F5F6FA #2C3E50
   client.focused_inactive #8C7AE6 #8C7AE6 #F5F6FA #454948
-  client.unfocused        #40739E #40739E #F5F6FA #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+  client.unfocused        #455A64 #455A64 #F5F6FA #454948
+  client.urgent           #f06292 #f06292 #F5F6FA #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000
   client.background       #2B2C2B
 
