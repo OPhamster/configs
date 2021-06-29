@@ -49,8 +49,11 @@ values."
      ;; version-control
      vimscript
      javascript
+     (json :variables json-backend nil)
      csv
      ivy
+     (elixir :variables
+             elixir-backend 'alchemist)
      emacs-lisp
      (auto-completion :variables
                       auto-completion-return-key-behavior nil
@@ -66,13 +69,16 @@ values."
      python
      terraform
      git
-     spell-checking
+     ;; make sure the suppoting libs, etcs are present
+     ;; enabling spell-checking
+     ;; spell-checking
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil)
      lsp
      (ruby :variables
+           ruby-backend nil
            ruby-insert-encoding-magic-comment nil
            ruby-version-manager 'rvm)
      (treemacs :variables
@@ -81,6 +87,9 @@ values."
      markdown
      sql
      multiple-cursors
+     (shell :variables shell-default-shell 'eshell
+            shell-default-term-shell "/bin/bash"
+            close-window-with-terminal t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -218,7 +227,7 @@ values."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-auto-save-file-location 'original
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
@@ -352,6 +361,7 @@ you should place your code here."
   (global-set-key (kbd "M-/") 'counsel-rg)
   (spacemacs/declare-prefix "o" "user")
   (spacemacs/set-leader-keys "oc" 'counsel-imenu)
+  (spacemacs/set-leader-keys "om" 'mc/mark-next-like-this)
   ;; BEHAVIOR CHANGES
   (add-hook 'find-file-hook
             (lambda ()
@@ -380,6 +390,7 @@ you should place your code here."
   ;;                     :major-modes '(ruby-mode)
   ;;                     :remote? t
   ;;                     :server-id 'solargraph-remote)))
+
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path)))
 
@@ -411,7 +422,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(ivy-case-fold-search-default nil)
  '(package-selected-packages
-   '(vimrc-mode helm-gtags ggtags dactyl-mode counsel-gtags web-beautify systemd livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc go-guru go-eldoc csv-mode company-go go-mode coffee-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode sql-indent smeargle rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake orgit mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient disaster company-statistics company-c-headers company cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+   '(ob-elixir helm-gtags ggtags flycheck-credo counsel-gtags alchemist elixir-mode web-beautify systemd livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc go-guru go-eldoc csv-mode company-go go-mode coffee-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode sql-indent smeargle rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake orgit mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient disaster company-statistics company-c-headers company cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
