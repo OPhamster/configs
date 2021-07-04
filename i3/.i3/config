@@ -373,7 +373,7 @@ set_from_resource $term_color15    color15
 # Color Ref: https://material.io/resources/color/#!/?view.left=0&view.right=0
 bar {
 	i3bar_command i3bar
-	status_command i3status
+	status_command i3blocks
 	position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
