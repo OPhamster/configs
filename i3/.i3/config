@@ -331,6 +331,8 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 30 -locker i3lock -f --color=34495e
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+# guake
+exec_always --no-startup-id guake
 # Multi-Monitor Support
 exec_always --no-startup-id /usr/local/bin/dual.sh
 # exec_always --no-startup-id sbxkb
