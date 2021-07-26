@@ -278,12 +278,31 @@ mode "$move_workspace" {
 
 # Media Playback mode
 bindsym $mod+q mode "$media_playback"
-set $media_playback (p)lay/pause (l)next (h)previous
+set $media_playback (p)lay/pause, (l)next, (h)previous
 mode "$media_playback" {
     # don't need to notify-send for the track since most players already do that
-    bindsym p exec playerctl play-pause; exec notify-send "$player play/paused", mode "default"
+    bindsym p exec playerctl play-pause; exec notify-send "play/paused", mode "default"
     bindsym h exec playerctl previous
     bindsym l exec playerctl next
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Pomodoro-cli: https://github.com/open-pomodoro/openpomodoro-cli
+bindsym $mod+p mode "$pomodoro_work"
+set $pomodoro_bin /home/ophamster/go/bin/pomodoro
+set $pomodoro_work (s)tart, (f)inish, (b)reak, (c)ancel, s(t)atus
+mode "$pomodoro_work" {
+    bindsym s exec $pomodoro_bin start "Work" -t work --duration 25; exec notify-send 'Pomodoro Work Started', mode "default"
+    bindsym f exec $pomodoro_bin finish; exec notify-send 'Pomodoro Stopped', mode "default"
+    # we have a pomodoro for break as well since break is a blocking call in this executeable and does not have a way of
+    # checking the status.
+    # TODO: see if this change can be proposed in the original project.
+    bindsym b exec $pomodoro_bin start "Break" -t break --duration 10; exec notify-send 'Pomodoro Break Started', mode "default"
+    bindsym c exec $pomodoro_bin finish; exec notify-send 'Running Pomodoro Cancelled', mode "default"
+    bindsym t exec notify-send "Pomodoro Status: $($pomodoro_bin status)", mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"

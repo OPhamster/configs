@@ -1,11 +1,11 @@
-[window]
-command=xtitle -s
-interval=persist
-color=#64FFDA
-
 # Update time every 5 seconds
 [time]
 full_text=
 command=date +%Y/%m/%d\ %R
 interval=5
+color=#FFAB00
+
+[pomodoro]
+interval=5
+command=echo "Pomodoro Status: $(/home/ophamster/go/bin/pomodoro status -f "%d %r")"
 color=#FFAB00
