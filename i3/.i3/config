@@ -23,7 +23,16 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Iosevka Light 10
+# Since i3 doesn't have a way of chucking the window title or projecting it into
+# the bar itself - the only way we can deal with it is having i3 display nothing
+# with an extremely small font size and having the bar (in this case polybar) do
+# it's thing to show that. This shows up as really tiny title bars during the
+# stacked and tabbed window views. In the split it didn't show up anyway.
+# This is basically preferred to showing up as separate title bars attached to
+# the windows instead of the bar itself - for the simple requirement of space
+# saving.
+# This cheap hack is a way to achieve dis.
+font xft:Iosevka Light 0
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -42,9 +51,9 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
+# exec --no-startup-id volumeicon
 # bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-# exec --no-startup-id pa-applet
+exec --no-startup-id pa-applet
 # exec --no-startup-id pulseaudio --start
 # bindsym $mod+Ctrl+m exec pavucontrol
 
@@ -353,6 +362,8 @@ exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id guake
 # Multi-Monitor Support
 exec_always --no-startup-id /usr/local/bin/dual.sh
+# polybar
+exec_always --no-startup-id /home/ophamster/.config/polybar/launch.sh
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
@@ -388,35 +399,6 @@ set_from_resource $term_color12    color12
 set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
-
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-# Color Ref: https://material.io/resources/color/#!/?view.left=0&view.right=0
-bar {
-	i3bar_command i3bar
-	status_command i3blocks
-	position top
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-	tray_output primary
-	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-	strip_workspace_numbers yes
-
-    colors {
-        background #212121
-        statusline #f5f6fa
-        separator  #7f8fa6
-
- #    	                   border  backgr. text
-        focused_workspace  #7b1fa2 #7b1fa2 #F5F6FA
-        active_workspace   #8C7AE6 #8C7AE6 #F5F6FA
-        inactive_workspace #455A64 #455A64 #F5F6FA
-        binding_mode       #1de9b6 #1de9b6 #212121
-        urgent_workspace   #f06292 #f06292 #F5F6FA
-    }
-}
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
