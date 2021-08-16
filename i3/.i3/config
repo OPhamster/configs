@@ -271,7 +271,7 @@ mode "$split_orientation" {
 
 # Set workspace movement mode
 bindsym $mod+i mode "$move_workspace"
-set $move_workspace (h)left, (j)down, (k)up, (l)right, (c)urrent (p)rimary <output>
+set $move_workspace (h)left, (j)down, (k)up, (l)right, (c)urrent (p)rimary <output> (o)ffice_layout ho(m)e_layout
 mode "$move_workspace" {
     bindsym h move workspace to output left; exec notify-send 'move workspace to left output', mode "default"
     bindsym j move workspace to output down; exec notify-send 'move workspace to down output', mode "default"
@@ -279,6 +279,9 @@ mode "$move_workspace" {
     bindsym l move workspace to output right; exec notify-send 'move workspace to right output', mode "default"
     bindsym c move workspace to output current; exec notify-send 'move workspace to current output', mode "default"
     bindsym p move workspace to output primary; exec notify-send 'move workspace to primary output', mode "default"
+    bindsym o exec --no-startup-id /usr/local/bin/office_dual.sh; exec notify-send 'moved to office layout', mode "default"
+    bindsym m exec --no-startup-id /usr/local/bin/dual.sh; exec notify-send 'moved to home layout', mode "default"
+
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
