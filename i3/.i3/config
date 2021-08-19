@@ -5,6 +5,7 @@
 set $mod Mod4
 # Set terminal
 set $terminal konsole
+set $picom picom --config /home/ophamster/.config/picom.conf -b
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -72,8 +73,9 @@ bindsym $mod+F3 exec thunar
 bindsym $mod+F5 exec spotify
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
+# compositor
 bindsym $mod+t exec --no-startup-id pkill picom
-bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+bindsym $mod+Ctrl+t exec --no-startup-id $picom
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -350,7 +352,7 @@ bindsym $mod+9 exec light-locker-command -l
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id nitrogen --restore; sleep 1; $picom
 exec --no-startup-id light-locker --lock-on-lid
 exec --no-startup-id emacs --daemon
 exec --no-startup-id nm-applet
