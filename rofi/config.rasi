@@ -1,8 +1,8 @@
 configuration {
-	modi: "run,window,file-browser,keys";
+	modi: "drun,window,file-browser,keys";
 	width: 50;
 	lines: 15;
-	columns: 1;
+	columns: 3;
 	font: "Iosevka Light 10";
 	bw: 1;
 	location: 0;

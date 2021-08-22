@@ -9,8 +9,8 @@ monitors=$(xrandr --query | grep \ connected | cut -d " " -f1)
 systray_monitor=$(xrandr --query | grep \ primary | cut -d " " -f1)
 for monitor in $monitors; do
     if [ ${monitor} == ${systray_monitor} ]; then
-        MONITOR=$monitor SYSTRAY_POSITION=right polybar example 2>&1 > /var/log/polybar/${monitor}_bar.log & disown
+        MONITOR=$monitor SYSTRAY_POSITION=right polybar top 2>&1 > /var/log/polybar/${monitor}_bar.log & disown
     else
-        MONITOR=$monitor polybar example 2>&1 > /var/log/polybar/${monitor}_bar.log & disown
+        MONITOR=$monitor polybar top 2>&1 > /var/log/polybar/${monitor}_bar.log & disown
     fi
 done
