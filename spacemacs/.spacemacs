@@ -57,11 +57,7 @@ values."
      emacs-lisp
      (auto-completion :variables
                       auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'complete
-                      :enabled-for
-                      ruby
-                      sql
-                      go)
+                      auto-completion-tab-key-behavior 'complete)
      (go :variables
          go-backend 'lsp
          go-format-before-save t)
@@ -167,7 +163,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-material spacemacs-dark)
+   dotspacemacs-themes '(doom-Iosvkem spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -371,6 +367,7 @@ you should place your code here."
   ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
         fancy-battery-show-percentage nil
+        imenu-max-item-length 120
         fancy-battery-mode nil)
   ;; One thing to note - `projectile` should be
   ;; As of writing this doc - it seems that `projectile-find-file'
