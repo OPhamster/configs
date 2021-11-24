@@ -48,6 +48,7 @@ values."
      ;; syntax-checking
      ;; version-control
      vimscript
+     rust
      javascript
      (json :variables json-backend nil)
      csv
@@ -59,7 +60,6 @@ values."
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete)
      (go :variables
-         go-backend 'lsp
          go-format-before-save t)
      systemd
      python
@@ -71,7 +71,8 @@ values."
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
      (syntax-checking :variables
-                      syntax-checking-enable-tooltips nil)
+                      syntax-checking-enable-tooltips t
+                      syntax-checking-enable-by-default t)
      lsp
      (ruby :variables
            ruby-backend nil
@@ -163,7 +164,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-nord spacemacs-dark)
+   dotspacemacs-themes '(doom-dracula spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -363,7 +364,7 @@ you should place your code here."
             (lambda ()
               (when (file-remote-p default-directory)
                 (setq-local projectile-mode-line "Projectile"))))
-  (global-undo-tree-mode)
+  (global-auto-complete-mode t)
   ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
         fancy-battery-show-percentage nil
