@@ -160,7 +160,7 @@ values."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+                                (projects . 10))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -392,6 +392,14 @@ you should place your code here."
   ;;                     :major-modes '(ruby-mode)
   ;;                     :remote? t
   ;;                     :server-id 'solargraph-remote)))
+
+  (eval-after-load "hideshow"
+    '(add-to-list 'hs-special-modes-alist
+                  `(ruby-mode
+                    ,(rx (or "def" "class" "module" "do" "{" "[" "if" "else" "unless")) ; Block start
+                    ,(rx (or "}" "]" "end"))                       ; Block end
+                    ,(rx (or "#" "=begin"))                        ; Comment start
+                    ruby-forward-sexp nil)))
 
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path)))
