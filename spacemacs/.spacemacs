@@ -62,7 +62,8 @@ values."
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete)
      (go :variables
-         go-format-before-save t)
+         go-format-before-save t
+         go-backend 'go-mode)
      systemd
      python
      terraform
