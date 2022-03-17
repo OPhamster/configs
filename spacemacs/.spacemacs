@@ -96,7 +96,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(doom-themes)
+   dotspacemacs-additional-packages '(doom-themes yafolding)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -363,11 +363,13 @@ you should place your code here."
   (spacemacs/declare-prefix "o" "user")
   (spacemacs/set-leader-keys "oc" 'counsel-imenu)
   (spacemacs/set-leader-keys "om" 'mc/mark-next-like-this)
+  (spacemacs/set-leader-keys "of" 'yafolding-toggle-element)
   ;; BEHAVIOR CHANGES
   (add-hook 'find-file-hook
             (lambda ()
               (when (file-remote-p default-directory)
                 (setq-local projectile-mode-line "Projectile"))))
+  (add-hook 'ruby-mode-hook 'yafolding-mode)
   (global-auto-complete-mode t)
   ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
@@ -393,13 +395,13 @@ you should place your code here."
   ;;                     :remote? t
   ;;                     :server-id 'solargraph-remote)))
 
-  (eval-after-load "hideshow"
-    '(add-to-list 'hs-special-modes-alist
-                  `(ruby-mode
-                    ,(rx (or "def" "class" "module" "do" "{" "[" "if" "else" "unless")) ; Block start
-                    ,(rx (or "}" "]" "end"))                       ; Block end
-                    ,(rx (or "#" "=begin"))                        ; Comment start
-                    ruby-forward-sexp nil)))
+  ;; (eval-after-load "hideshow"
+  ;;   '(add-to-list 'hs-special-modes-alist
+  ;;                 `(ruby-mode
+  ;;                   ,(rx (or "do" "{" "[" "if" "else" "unless" "def" "class" "module" )) ; Block start
+  ;;                   ,(rx (or "}" "]" "end"))                       ; Block end
+  ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
+  ;;                   ruby-forward-sexp nil)))
 
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path)))
