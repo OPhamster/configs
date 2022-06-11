@@ -30,7 +30,9 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
+   '((clojure :variables clojure-backend 'cider)
+     ansible
+     html
      protobuf
      ;; javascript
      ;; ----------------------------------------------------------------
@@ -49,6 +51,7 @@ values."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     kubernetes
      vimscript
      rust
      javascript
@@ -375,7 +378,9 @@ you should place your code here."
   (setq flycheck-checker-error-threshold 500
         fancy-battery-show-percentage nil
         imenu-max-item-length 120
-        fancy-battery-mode nil)
+        fancy-battery-mode nil
+        kubernetes-poll-frequency 3600
+        kubernetes-redraw-frequency 3600)
   ;; One thing to note - `projectile` should be
   ;; As of writing this doc - it seems that `projectile-find-file'
   ;; depends entirely on the `projectile-generic-command' which
@@ -438,7 +443,7 @@ This function is called at the very end of Spacemacs initialization."
  '(hl-sexp-background-color "#1c1f26")
  '(ivy-case-fold-search-default nil)
  '(package-selected-packages
-   '(web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode htmlize helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path web-beautify systemd livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc go-guru go-eldoc csv-mode company-go go-mode coffee-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode sql-indent smeargle rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake orgit mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient disaster company-statistics company-c-headers company cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(kubernetes-tramp kubernetes-evil kubernetes web-beautify systemd livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc go-guru go-eldoc csv-mode company-go go-mode coffee-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode sql-indent smeargle rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake orgit mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient disaster company-statistics company-c-headers company cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#f36c60")
@@ -459,11 +464,22 @@ This function is called at the very end of Spacemacs initialization."
      (320 . "#ff9800")
      (340 . "#fff59d")
      (360 . "#8bc34a")))
- '(vc-annotate-very-old-color nil))
+ '(vc-annotate-very-old-color nil)
+ '(warning-suppress-log-types
+   '(((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files))))
+ '(warning-suppress-types
+   '(((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files))
+     ((defvaralias losing-value ac-user-dictionary-files)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
 )
