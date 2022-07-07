@@ -30,71 +30,52 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((clojure :variables clojure-backend 'cider)
-     scala
+   '(
      ansible
-     html
-     protobuf
-     ;; javascript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
-     ;; git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
-     kubernetes
-     vimscript
-     rust
-     javascript
-     (json :variables json-backend nil)
-     csv
-     ivy
-     (elixir :variables
-             elixir-backend 'alchemist)
-     emacs-lisp
      (auto-completion :variables
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete)
+     (c-c++ :variables
+            c-c++-backend 'lsp-clangd)
+     (clojure :variables clojure-backend 'cider)
+     csv
+     (elixir :variables
+             elixir-backend 'alchemist)
+     emacs-lisp
+     git
      (go :variables
          go-format-before-save t
          go-backend 'go-mode)
-     systemd
-     python
-     terraform
-     git
-     ;; make sure the suppoting libs, etcs are present
-     ;; enabling spell-checking
-     ;; spell-checking
-     (c-c++ :variables
-            c-c++-backend 'lsp-clangd)
-     (syntax-checking :variables
-                      syntax-checking-enable-tooltips t
-                      syntax-checking-enable-by-default t)
+     html
+     ivy
+     javascript
+     (json :variables json-backend nil)
+     kubernetes
      lsp
+     markdown
+     multiple-cursors
+     protobuf
+     python
      (ruby :variables
            ruby-backend nil
            ruby-insert-encoding-magic-comment nil
            ruby-version-manager 'rvm)
-     (treemacs :variables
-               treemacs-use-filewatch-mode t)
-     yaml
-     markdown
-     sql
-     multiple-cursors
+     rust
+     scala
      (shell :variables shell-default-shell 'vterm
             shell-default-term-shell "/bin/bash --login"
             spacemacs-vterm-history-file-location "~/.bash_history"
             close-window-with-terminal t)
+     sql
+     (syntax-checking :variables
+                      syntax-checking-enable-tooltips t
+                      syntax-checking-enable-by-default t)
+     systemd
+     terraform
+     (treemacs :variables
+               treemacs-use-filewatch-mode t)
+     vimscript
+     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
