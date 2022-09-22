@@ -280,7 +280,7 @@ mode "$move_workspace" {
     bindsym l move workspace to output right; exec notify-send 'move workspace to right output', mode "default"
     bindsym c move workspace to output current; exec notify-send 'move workspace to current output', mode "default"
     bindsym p move workspace to output primary; exec notify-send 'move workspace to primary output', mode "default"
-    bindsym o exec --no-startup-id /usr/local/bin/office_dual.sh; exec notify-send 'moved to office layout', mode "default"
+    bindsym o exec --no-startup-id ~/.screenlayout/office_layout.sh; exec notify-send 'moved to office layout', mode "default"
     bindsym m exec --no-startup-id /usr/local/bin/dual.sh; exec notify-send 'moved to home layout', mode "default"
     bindsym s exec --no-startup-id /usr/bin/xrandr --auto; exec notify-send 'moved to single display', mode "default"
 
