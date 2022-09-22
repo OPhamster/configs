@@ -55,7 +55,7 @@ values."
      markdown
      multiple-cursors
      (org :variables
-          org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "DONE(d)"))
+          org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "DONE"))
           org-agenda-files '("~/agenda/todo.org"))
      protobuf
      python
@@ -358,6 +358,11 @@ you should place your code here."
               (when (file-remote-p default-directory)
                 (setq-local projectile-mode-line "Projectile"))))
   (add-hook 'ruby-mode-hook 'yafolding-mode)
+  (add-hook 'org-after-todo-statistics-hook
+            (lambda (n-done n-not-done)
+              "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
+              (let (org-log-done org-log-states)   ; turn off logging
+                (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-auto-complete-mode t)
   ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
