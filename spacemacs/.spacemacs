@@ -64,7 +64,8 @@ values."
            ruby-insert-encoding-magic-comment nil
            ruby-version-manager 'rvm)
      rust
-     scala
+     (scala :variables
+            scala-sbt-window-position 'bottom)
      (shell :variables shell-default-shell 'vterm
             shell-default-term-shell "/bin/bash --login"
             spacemacs-vterm-history-file-location "~/.bash_history"
@@ -389,7 +390,12 @@ you should place your code here."
   ;;                     :major-modes '(ruby-mode)
   ;;                     :remote? t
   ;;                     :server-id 'solargraph-remote)))
-
+  (with-eval-after-load 'lsp-mode
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-tramp-connection "metals-emacs")
+                      :major-modes '(scala-mode)
+                      :remote? t
+                      :server-id 'metals-remote)))
   ;; (eval-after-load "hideshow"
   ;;   '(add-to-list 'hs-special-modes-alist
   ;;                 `(ruby-mode
@@ -432,6 +438,7 @@ This function is called at the very end of Spacemacs initialization."
  '(fci-rule-color "#37474f")
  '(hl-sexp-background-color "#1c1f26")
  '(ivy-case-fold-search-default nil)
+ '(lsp-metals-server-command "metals-emacs")
  '(package-selected-packages
    '(evil-org gnuplot org-cliplink org-contrib org-download org-mime org-pomodoro alert log4e gntp org-present org-projectile org-category-capture org-rich-yank orgit-forge web-beautify systemd livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc go-guru go-eldoc csv-mode company-go go-mode coffee-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode sql-indent smeargle rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake orgit mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient disaster company-statistics company-c-headers company cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(vc-annotate-background nil)
