@@ -363,7 +363,7 @@ you should place your code here."
               "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
               (let (org-log-done org-log-states)   ; turn off logging
                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
-  (global-auto-complete-mode t)
+  ;; (global-auto-complete-mode t)
   ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
         fancy-battery-show-percentage nil
