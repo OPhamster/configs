@@ -1,11 +1,14 @@
-# Update time every 5 seconds
-[time]
-full_text=
-command=date +%Y/%m/%d\ %R
-interval=5
-color=#FFAB00
+# Ref: https://github.com/vivien/i3blocks-contrib/tree/master/calendar
+[calendar]
+command=/usr/local/bin/calendar
+interval=1
+LABEL= 
+DATEFMT=+%a %b %d %Y | %H:%M:%S
+# SHORTFMT=+%H:%M:%S
+HEIGHT=180
+WIDTH=220
 
-[pomodoro]
-interval=5
-command=echo "Pomodoro Status: $(/home/ophamster/go/bin/pomodoro status -f "%d %r")"
-color=#FFAB00
+[battery]
+command=/usr/local/bin/battery
+markup=pango
+interval=2
