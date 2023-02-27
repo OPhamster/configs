@@ -17,7 +17,8 @@ set $left h
 set $right l
 set $mod Mod4
 set $terminal konsole
-set $locker i3lock -t -i /usr/share/backgrounds/painted_world.png
+set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
+set $screenshotter maim ~/Pictures/screenshots/$(date +%s)_maim.png -u -s
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -68,7 +69,9 @@ bindsym $mod+F4 exec spotify
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id $picom
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print --release exec --no-startup-id i3-scrot -s
+# bindsym Print --release exec --no-startup-id i3-scrot -s
+bindsym Print --release exec --no-startup-id $screenshotter
+# bindsym Ctrl+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # use Mouse+$mod to drag floating windows to their wanted position
