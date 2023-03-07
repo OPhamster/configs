@@ -236,6 +236,10 @@
     format = "Brightness"
     new_icon = "/usr/share/icons/Papirus/48x48/apps/power-manager-brightness.svg"
 
+[network-manager]
+    appname = "NetworkManager Applet"
+    new_icon = "/usr/share/icons/Papirus/48x48/apps/nm-applet.svg"
+
 # [espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
