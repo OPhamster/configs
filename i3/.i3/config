@@ -62,8 +62,7 @@ bindsym $mod+Return exec $terminal
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+F1 exec emacsclient -c -a=""
-bindsym $mod+F2 exec firefox -P ophamster
-bindsym $mod+shift+F2 exec firefox -P clarisights
+bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F4 exec spotify
 bindsym $mod+t exec --no-startup-id pkill picom
