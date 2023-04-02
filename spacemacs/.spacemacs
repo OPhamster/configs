@@ -56,7 +56,7 @@ values."
      multiple-cursors
      (org :variables
           org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "DONE"))
-          org-agenda-files '("~/agenda/todo.org"))
+          org-agenda-files '("~/agenda"))
      protobuf
      python
      (ruby :variables
