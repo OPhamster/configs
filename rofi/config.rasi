@@ -1,14 +1,9 @@
 configuration {
-	modi: "drun,window,filebrowser,keys";
+	modi: "drun,window,calc,keys";
 	width: 50;
 	lines: 15;
 	columns: 3;
-	font: "Iosevka Light 10";
 	bw: 1;
-	location: 0;
-	padding: 5;
-	yoffset: 0;
-	xoffset: 0;
 	fixed-num-lines: true;
 	show-icons: true;
 	terminal: "konsole";
@@ -61,3 +56,4 @@ configuration {
 	max-history-size: 25;
 	combi-hide-mode-prefix: false;
 }
+@theme "dmenu.rasi"
