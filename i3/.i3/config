@@ -92,6 +92,9 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth no
+hide_edge_borders smart
+smart_borders on
+force_display_urgency_hint 500 ms
 
 # change focus
 bindsym $mod+$left focus left
@@ -276,6 +279,35 @@ mode "$media_playback" {
     bindsym Ctrl+g mode "default"
 }
 
+# Color
+# Colors set from ~/.Xresources
+set_from_resource	$background	background
+set_from_resource	$foreground	foreground
+set_from_resource	$color0		color0
+set_from_resource $color1 	color1
+set_from_resource $color2 	color2
+set_from_resource $color3 	color3
+set_from_resource $color4 	color4
+set_from_resource $color5 	color5
+set_from_resource $color6		color6
+set_from_resource	$color7		color7
+set_from_resource	$color8		color8
+set_from_resource	$color9		color9
+set_from_resource	$color10	color10
+set_from_resource	$color11	color11
+set_from_resource	$color12	color12
+set_from_resource	$color13	color13
+set_from_resource	$color14	color14
+set_from_resource	$color15	color15
+
+# Theme colors
+# class                 border  	  backgr. 	  text    	  indic.  	  child_border
+client.focused         	$color6	    $color6	    $background	$color6		  $color6
+client.unfocused       	$background	$background	$foreground	$background	$background
+client.focused_inactive	$foreground	$background	$foreground	$background	$background
+client.urgent		        $foreground	$background	$foreground	$background	$background
+client.placeholder	    $foreground	$background	$foreground	$background	$background
+
 ###############################################################################
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -285,10 +317,21 @@ bar {
 	  i3bar_command i3bar
     status_command i3status
  	  position bottom
+    font pango:Roboto Normal 9
+    separator_symbol "▖"
+    colors {
+        background $background
+        #                  border      background  text
+        focused_workspace  $color6     $color6     $background
+        inactive_workspace $background $background $foreground
+        active_workspace   $foreground $background $foreground
+        urgent_workspace   $foreground $background $foreground
+    }
 }
 
 ######## Window Exclusions
 for_window [class="Yad"] floating enable
+for_window [all] title_window_icon on
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
