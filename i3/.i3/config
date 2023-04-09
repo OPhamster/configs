@@ -319,7 +319,7 @@ bar {
     status_command i3status
  	  position bottom
     font pango:Roboto Normal 9
-    separator_symbol "▖"
+    separator_symbol " "
     colors {
         background $background
         #                  border      background  text
