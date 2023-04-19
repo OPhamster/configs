@@ -1,4 +1,4 @@
 set number
-set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus
 set incsearch
 syntax on
