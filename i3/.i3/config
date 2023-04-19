@@ -320,7 +320,8 @@ bar {
     status_command i3status
  	  position bottom
     font pango:Roboto Normal 9
-    separator_symbol " "
+    status_command /usr/bin/i3status-rs /home/ophamster/.config/i3status-rust/config.toml
+    separator_symbol "<"
     colors {
         background $background
         #                  border      background  text
