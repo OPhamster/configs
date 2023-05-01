@@ -1,0 +1,105 @@
+wtf:
+  openFileUtil: "xdg-open"
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [32, 32, 32, 32, 90]
+    rows: [10, 10, 10, 4, 4, 90]
+  refreshInterval: 1
+  mods:
+    feedreader:
+      enabled: true
+      feeds:
+      - http://feeds.bbci.co.uk/news/rss.xml
+      - http://medium.com/feed/tag/software-engineering
+      feedLimit: 10
+      position:
+        top: 0
+        left: 0
+        width: 3
+        height: 1
+      refreshInterval: 14400
+    ipinfo:
+      colors:
+        name: "lightblue"
+        value: "white"
+      enabled: true
+      position:
+        top: 1
+        left: 0
+        height: 1
+        width: 2
+      refreshInterval: 150
+    power:
+      enabled: true
+      position:
+        top: 1
+        left: 2
+        height: 1
+        width: 1
+      refreshInterval: 15
+      title: "⚡️"
+    uptime:
+      args: ["-p"]
+      cmd: "uptime"
+      enabled: true
+      position:
+        top: 1
+        left: 3
+        height: 1
+        width: 1
+      refreshInterval: 30
+      type: cmdrunner
+    resourceusage:
+      uCombined: false
+      enabled: true
+      position:
+        top: 1
+        left: 4
+        height: 1
+        width: 1
+      refreshInterval: 1s
+      showCPU: true
+      showMem: true
+      showSwp: true
+    df:
+      args: ["-h"]
+      cmd: "df"
+      enabled: true
+      position:
+        top: 2
+        left: 0
+        height: 2
+        width: 2
+      refreshInterval: 1800s
+      type: "cmdrunner"
+    ps:
+      title: ps
+      args: ["-aux", "--sort=-%cpu,-%mem"]
+      cmd: "ps"
+      enabled: true
+      position:
+        top: 2
+        left: 2
+        height: 2
+        width: 3
+      refreshInterval: 30s
+      type: "cmdrunner"
+    textfile:
+      enabled: true
+      filePaths:
+      - "~/Dropbox/agenda/chores.org"
+      - "~/Dropbox/agenda/college_todos.org"
+      - "~/Dropbox/agenda/project_work.org"
+      format: true
+      formatStyle: "colorful"
+      position:
+        top: 0
+        left: 3
+        height: 1
+        width: 2
+      refreshInterval: 15s
+      wrapText: true
