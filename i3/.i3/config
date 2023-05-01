@@ -44,14 +44,15 @@ exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
 exec --no-startup-id pa-applet
 exec_always --no-startup-id picom
-exec_always --no-startup-id conky -c ~/.config/conky/conky_green
 exec --no-startup-id dropbox start
 exec emacs --daemon
 
 
-# TODO: fix this. Doesn't seem to work as expected
-# exec --no-startup-id kitty wtfutil
-# assign [class="kitty" title="wtfutil"] 8
+exec --no-startup-id kitty --name wtfutil wtfutil
+# used `xwininfo` to find out the id of the window
+# Ref: https://i3wm.org/docs/userguide.html#command_criteria
+# Ref: https://i3wm.org/docs/userguide.html#assign_workspace
+assign [class="^kitty$" instance="^wtfutil$"] 8
 
 # lockscreen
 exec --no-startup-id xautolock -time 30 -locker $locker -detectsleep -corners -00-
