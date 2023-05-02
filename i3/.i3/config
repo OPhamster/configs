@@ -17,6 +17,7 @@ set $left h
 set $right l
 set $mod Mod4
 set $terminal kitty
+set $rofim ~/.config/rofi/scripts/rofi-man.sh
 # set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
 set $locker dm-tool lock
 set $screenshotter maim ~/Pictures/screenshots/$(date +%s)_maim.png -u -s
@@ -92,8 +93,10 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# rofi shortcuts
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+m exec --no-startup-id rofi -show man -modes "man:$rofim" -case-sensitive -matching prefix -tokenize
+bindsym Mod1+Tab exec --no-startup-id rofi -show window
 # A more modern dmenu replacement is rofi:
 # bindsym $mod+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
