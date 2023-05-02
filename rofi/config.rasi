@@ -1,17 +1,18 @@
 configuration {
-	modi: "drun,run,window,calc,keys";
-	width: 50;
-	lines: 15;
-	columns: 3;
-	bw: 1;
+	modi: "drun,run,calc,keys";
+  font: "Roboto Normal 9";
+	width: 10;
+	lines: 5;
+	columns: 2;
+	bw: 2;
 	fixed-num-lines: true;
 	show-icons: true;
-	terminal: "konsole";
+	terminal: "kitty";
 	ssh-client: "ssh";
 	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
-	run-command: "{cmd}";
+	run-command: "{terminal} {cmd}";
 	run-list-command: "";
-	run-shell-command: "{terminal} -e {cmd}";
+	run-shell-command: "{terminal} {cmd}";
 	window-command: "wmctrl -i -R {window}";
 	window-match-fields: "all";
 	drun-match-fields: "name,generic,exec,categories,keywords";
@@ -56,4 +57,4 @@ configuration {
 	max-history-size: 25;
 	combi-hide-mode-prefix: false;
 }
-@theme "dmenu.rasi"
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
