@@ -6,7 +6,8 @@ show_manpage() {
 }
 
 list_manpages() {
-    whatis -r ".*"
+    # this gives u the list of executables
+    whatis -s 1 -r .
 }
 
 strip_selection() {
