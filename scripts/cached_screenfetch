@@ -4,7 +4,9 @@ SCREENFETCH_CACHE=/tmp/screenfetch.info
 CAT_BIN=/usr/bin/cat
 
 function read_from_cache { $CAT_BIN $SCREENFETCH_CACHE; }
-function write_to_cache { screenfetch > $SCREENFETCH_CACHE; }
+# we don't want to see any errors and we want to wrap long lines
+# short and sweet
+function write_to_cache { screenfetch -E -w > $SCREENFETCH_CACHE; }
 
 if [[ -f $SCREENFETCH_CACHE ]]
 then
