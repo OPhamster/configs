@@ -10,7 +10,7 @@ configuration {
 	terminal: "kitty";
 	ssh-client: "ssh";
 	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
-	run-command: "{terminal} {cmd}";
+	run-command: "{cmd}";
 	run-list-command: "";
 	run-shell-command: "{terminal} {cmd}";
 	window-command: "wmctrl -i -R {window}";
