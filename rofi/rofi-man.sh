@@ -2,7 +2,7 @@
 
 show_manpage() {
     # ref: man rofi-script
-    coproc ( kitty man $@ >/dev/null 2>&1 )
+    coproc ( kitty --detach man $@ >/dev/null 2>&1 )
 }
 
 list_manpages() {
