@@ -7,7 +7,7 @@ show_manpage() {
 
 list_manpages() {
     # this gives u the list of executables
-    whatis -s 1 -r .
+    whatis -s 1,8 -r .
 }
 
 strip_selection() {
