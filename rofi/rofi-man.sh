@@ -19,7 +19,7 @@ strip_selection() {
     # attempting to fetch the first section of the manpage. The manpage with section directive still works
     # with this as expected i.e `man c_rehash(1ssl)` gives the same results as `man c_rehash` but
     # something to note.
-    echo $@ | grep -E '^([[:alnum:]]+([-_][[:alnum:]]+) (\([0-9]+\))*)' -o | sed -E s/\ //
+    echo $@ | grep -E '^(([[:alnum:]])+([-_][[:alnum:]]+)* (\([0-9]+\))*)' -o | sed -E s/\ //
 }
 
 if [ $# == 0 ]; then
