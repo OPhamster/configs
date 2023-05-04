@@ -2,7 +2,7 @@
 
 DESCRIPTION="Search for executable by their name or functionality (picked from it's corresponding \"whatis\" output)"
 # TODO: dynamically figure out $MAN_TERM
-MAN_TERM=kitty
+# echo "export MAN_TERM=<preferred_terminal>" >> ~/.profile
 
 echo -en "\0message\x1f$DESCRIPTION\n"
 
@@ -14,11 +14,11 @@ exec_with_term() {
                ;;
         urxvt) coproc ( urxvt -T "man $@" -e man $@ && exit >/dev/null 2>&1 )
                ;;
-        konsole) coproc (konsole -e man $@ && exit >/dev/null 2>&1 )
+        konsole) coproc ( konsole -e man $@ && exit >/dev/null 2>&1 )
                  ;;
-        xterm) coproc (xterm -T "man $@" -e man $@ && exit >/dev/null 2>&1 )
+        xterm) coproc ( xterm -T "man $@" -e man $@ && exit >/dev/null 2>&1 )
                ;;
-        *) coproc ( rofi -e "Unsupported TERM $MAN_TERM" )
+        *) rofi-sensible-terminal $@
            ;;
     esac
 }
