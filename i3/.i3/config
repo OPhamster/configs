@@ -95,7 +95,7 @@ bindsym $mod+Shift+q kill
 
 # rofi shortcuts
 bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod+m exec --no-startup-id rofi -show man -modes "man:$rofim" -case-sensitive -matching prefix -tokenize
+bindsym $mod+m exec --no-startup-id rofi -show man -modes "man:$rofim" -matching prefix -tokenize
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 # A more modern dmenu replacement is rofi:
 # bindsym $mod+d exec "rofi -modi drun,run -show drun"
