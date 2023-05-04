@@ -11,6 +11,9 @@ list_manpages() {
 }
 
 strip_selection() {
+    # TODO: fix this bug
+    # BUG: what if the executable contains a `-`
+    # CONSIDER: `i3-msg` would actual return `man i3`
     echo $@ | cut -d '-' -f1 | sed -E s/\ //
 }
 
