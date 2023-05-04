@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 DESCRIPTION="Search for executable by their name or functionality (picked from it's corresponding \"whatis\" output)"
-# TODO: dynamically figure out $MAN_TERM
 # echo "export MAN_TERM=<preferred_terminal>" >> ~/.profile
 
 echo -en "\0message\x1f$DESCRIPTION\n"
