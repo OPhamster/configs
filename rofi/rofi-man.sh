@@ -11,10 +11,15 @@ list_manpages() {
 }
 
 strip_selection() {
-    # TODO: fix this bug
-    # BUG: what if the executable contains a `-`
-    # CONSIDER: `i3-msg` would actual return `man i3`
-    echo $@ | cut -d '-' -f1 | sed -E s/\ //
+    # * needs to start with alphanumeric characters
+    # * can have hyphen(-) or underscore(_) in executable name
+    # * needs to be followed by a man section surrounded by paranthesis like `([0-9]+)`
+    # NOTE: There are certain executables that have (seemingly legitimate) sections that are not just
+    # numbers but alphanumeric in nature. For example `c_rehash (1ssl)`. In those cases we're basically
+    # attempting to fetch the first section of the manpage. The manpage with section directive still works
+    # with this as expected i.e `man c_rehash(1ssl)` gives the same results as `man c_rehash` but
+    # something to note.
+    echo $@ | grep -E '^([[:alnum:]]+([-_][[:alnum:]]+) (\([0-9]+\))*)' -o | sed -E s/\ //
 }
 
 if [ $# == 0 ]; then
