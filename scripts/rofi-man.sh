@@ -1,10 +1,30 @@
 #!/usr/bin/env bash
 
 DESCRIPTION="Search for executable by their name or functionality (picked from it's corresponding \"whatis\" output)"
+# TODO: dynamically figure out $MAN_TERM
+MAN_TERM=kitty
+
 echo -en "\0message\x1f$DESCRIPTION\n"
+
+exec_with_term() {
+    # NOTE: `coproc` is suggested in `man rofi-script`
+    # NOTE: The exit is there to make the terminal window a single use window
+    case $MAN_TERM in
+        kitty) coproc ( kitty --title "man $@" --detach man $@ && exit >/dev/null 2>&1 )
+               ;;
+        urxvt) coproc ( urxvt -T "man $@" -e man $@ && exit >/dev/null 2>&1 )
+               ;;
+        konsole) coproc (konsole -e man $@ && exit >/dev/null 2>&1 )
+                 ;;
+        xterm) coproc (xterm -T "man $@" -e man $@ && exit >/dev/null 2>&1 )
+               ;;
+        *) coproc ( rofi -e "Unsupported TERM $MAN_TERM" )
+           ;;
+    esac
+}
+
 show_manpage() {
-    # ref: man rofi-script
-    coproc ( kitty --detach man $@ >/dev/null 2>&1 )
+    exec_with_term $@
 }
 
 list_manpages() {
