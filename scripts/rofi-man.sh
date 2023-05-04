@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DESCRIPTION="Search for executable by their name or functionality (picked from it's corresponding \"whatis\" output)"
+echo -en "\0message\x1f$DESCRIPTION\n"
 show_manpage() {
     # ref: man rofi-script
     coproc ( kitty --detach man $@ >/dev/null 2>&1 )
