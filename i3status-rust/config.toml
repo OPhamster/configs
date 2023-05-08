@@ -14,6 +14,9 @@ block = "temperature"
 
 [[block]]
 block = "cpu"
+[[block.click]]
+button = "left"
+cmd = "kitty htop"
 
 [[block]]
 block = "disk_space"
@@ -34,3 +37,6 @@ format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
 block = "time"
 interval = 5
 format = " $timestamp.datetime(f:'%a %d/%m %R') "
+[[block.click]]
+button = "left"
+cmd = "kitty wtfutil"
