@@ -17,7 +17,7 @@ set $left h
 set $right l
 set $mod Mod4
 set $terminal kitty
-set $rofim rofi-man.sh
+set $rofim rofi-man
 # set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
 set $locker dm-tool lock
 set $screenshotter maim ~/Pictures/screenshots/$(date +%s)_maim.png -u -s
