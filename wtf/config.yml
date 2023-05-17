@@ -2,9 +2,9 @@ wtf:
   openFileUtil: "xdg-open"
   colors:
     border:
-      focusable: darkslateblue
-      focused: orange
-      normal: gray
+      focusable: yellow
+      focused: white
+      normal: blue
   grid:
     columns: [32, 32, 32, 32, 90]
     rows: [10, 10, 10, 4, 4, 90]
