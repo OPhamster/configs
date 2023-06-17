@@ -45,7 +45,7 @@ values."
      git
      (go :variables
          go-format-before-save t
-         go-backend 'go-mode)
+         go-backend 'lsp)
      html
      ivy
      javascript
@@ -401,6 +401,11 @@ you should place your code here."
                       :major-modes '(c-mode c++-mode)
                       :remote? t
                       :server-id 'clangd-remote))
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-tramp-connection "gopls")
+                      :major-modes '(go-mode)
+                      :remote? t
+                      :server-id 'gopls))
     )
   ;; (eval-after-load "hideshow"
   ;;   '(add-to-list 'hs-special-modes-alist
