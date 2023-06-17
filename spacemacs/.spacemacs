@@ -371,7 +371,8 @@ you should place your code here."
         imenu-max-item-length 120
         fancy-battery-mode nil
         kubernetes-poll-frequency 3600
-        kubernetes-redraw-frequency 3600)
+        kubernetes-redraw-frequency 3600
+        terminal-here-linux-terminal-command 'kitty)
   ;; One thing to note - `projectile` should be
   ;; As of writing this doc - it seems that `projectile-find-file'
   ;; depends entirely on the `projectile-generic-command' which
