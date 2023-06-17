@@ -49,11 +49,11 @@ exec --no-startup-id dropbox start
 exec emacs --daemon
 
 
-exec --no-startup-id kitty --name wtfutil wtfutil
+# exec --no-startup-id kitty --name wtfutil wtfutil
 # used `xwininfo` to find out the id of the window
 # Ref: https://i3wm.org/docs/userguide.html#command_criteria
 # Ref: https://i3wm.org/docs/userguide.html#assign_workspace
-assign [class="^kitty$" instance="^wtfutil$"] 8
+# assign [class="^kitty$" instance="^wtfutil$"] 8
 
 # lockscreen
 exec --no-startup-id xautolock -time 30 -locker $locker -detectsleep -corners -00-
@@ -79,6 +79,7 @@ bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec $terminal ranger
 bindsym $mod+Ctrl+F3 exec pcmanfm
 bindsym $mod+F4 exec spotify
+bindsym $mod+F5 exec gimp
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id $picom
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -325,11 +326,10 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 # For now the default bar works out fine
 bar {
 	  i3bar_command i3bar
-    status_command i3status
+    # status_command i3status
  	  position bottom
     font pango:Roboto Normal 9
     status_command /usr/bin/i3status-rs /home/ophamster/.config/i3status-rust/config.toml
-    separator_symbol "<"
     colors {
         background $background
         #                  border      background  text
@@ -354,4 +354,4 @@ for_window [all] title_window_icon on
 #
 # Please remove the following exec line:
 #######################################################################
-exec i3-config-wizard
+# exec i3-config-wizard
