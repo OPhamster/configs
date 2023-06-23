@@ -1,0 +1,34 @@
+#!/bin/bash
+
+$PROFILE=~/.profile
+
+function export_variables() {
+	# required by rofi-man
+	echo "# required by rofi-man" >> $PROFILE
+	echo "export MAN_TERM=kitty" >> $PROFILE
+	echo "export PATH=$PATH:$HOME/.local/bin" >> $PROFILE
+	# required by go
+	echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $PROFILE
+}
+
+function source_utils() {
+	# required by rust
+	echo ". \"$HOME/.cargo/env\"" >> $PROFILE
+}
+
+function ssh_utils() {
+	# for agent forwarding
+	echo "eval \"$(ssh-agent -s)\"" >> $PROFILE
+}
+
+function setup_defaults() {
+	echo "export EDITOR=\"/usr/bin/emacsclient -c\"" >> $PROFILE
+	# set browser here as well
+}
+
+# TODO: need to add a check if all this already exists
+
+setup_defaults
+export_variables
+source_utils
+ssh_utils
