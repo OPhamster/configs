@@ -86,7 +86,6 @@ bindsym $mod+F4 exec flatpak run com.spotify.Client
 bindsym $mod+F5 exec gimp
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id $picom
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 # bindsym Print --release exec --no-startup-id i3-scrot -s
 bindsym Print --release exec --no-startup-id $screenshotter
 # bindsym Ctrl+Print --release exec --no-startup-id i3-scrot -w
@@ -293,6 +292,26 @@ mode "$media_playback" {
     bindsym Escape mode "default"
     bindsym Ctrl+g mode "default"
 }
+
+# bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+# Dunst related activities
+# TODO: show history
+# TODO: have singular key for dnd and off-dnd. use dunstctl is-paused
+bindsym $mod+Shift+d mode "$dunst_activities"
+set $dunst_activities (r)estart-dunst, (d)nd, (s)top-dnd
+mode "$dunst_activities" {
+     bindsym r exec killall dunst; exec notify-send 'restart dunst', mode "default"
+     # the sleep 10 is because if I don't - the set-paused takes over and I don't see the
+     # DND ACTIVE notification
+     bindsym d exec notify-send -u critical 'Do Not Disturb Active'; exec dunstctl history-pop && dunstctl set-paused active, mode "default"
+     bindsym s exec dunstctl set-paused false && exec notify-send -u critical 'Do Not Disturb Inactive', mode "default"
+
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Ctrl+g mode "default"
+}
+
 
 # Color
 # Colors set from ~/.Xresources
