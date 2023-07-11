@@ -73,7 +73,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Start Applications
-bindsym $mod+Return exec $terminal
+# bindsym $mod+Return exec $terminal
 # bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
