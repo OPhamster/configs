@@ -165,6 +165,7 @@ values."
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka Nerd Font"
                                :size 11
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
@@ -391,12 +392,24 @@ you should place your code here."
   ;;                     :major-modes '(ruby-mode)
   ;;                     :remote? t
   ;;                     :server-id 'solargraph-remote)))
+  ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/057e8789638a0bf493930637185694b6b09ea58e/lsp-rust.el#L303
+  ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/e4efbab6704e6b1241cccfa0992dbcc4ba08cdcb/lsp-metals.el#L160
+  ;; NOTE: The idea is to make the tramp connection just like the layer normally would except that it would
+  ;; normally make it on an 'lsp-stdio-connection and we would make it on an 'lsp-tramp-connection since we're
+  ;; interacting with a container
   (with-eval-after-load 'lsp-mode
     (lsp-register-client
      (make-lsp-client :new-connection (lsp-tramp-connection "metals-emacs")
                       :major-modes '(scala-mode)
+                      :priority -1
                       :remote? t
-                      :server-id 'metals-remote))
+                      :notification-handlers (ht ("metals/executeClientCommand" #'lsp-metals--execute-client-command)
+                                                 ("metals/treeViewDidChange" #'ignore))
+		                  :server-id 'metals-remote
+                      :initialized-fn (lambda (workspace)
+                                        (with-lsp-workspace workspace
+                                          (lsp--set-configuration
+                                           (lsp-configuration-section "metals"))))))
     (lsp-register-client
      (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
                       :major-modes '(c-mode c++-mode)
