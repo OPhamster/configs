@@ -33,8 +33,9 @@ values."
    '(
      ansible
      (auto-completion :variables
-                      auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'complete)
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-enable-help-tooltip t)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
      (clojure :variables clojure-backend 'cider)
@@ -65,7 +66,8 @@ values."
            ruby-version-manager 'rvm)
      rust
      (scala :variables
-            scala-sbt-window-position 'bottom)
+            scala-sbt-window-position 'bottom
+            scala-auto-insert-asterisk-in-comments t)
      (shell :variables shell-default-shell 'vterm
             shell-default-term-shell "/bin/bash"
             spacemacs-vterm-history-file-location "~/.bash_history"
