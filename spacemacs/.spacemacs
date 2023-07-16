@@ -45,6 +45,7 @@ values."
      emacs-lisp
      git
      (go :variables
+         go-use-golangci-lint t
          go-format-before-save t
          go-backend 'lsp)
      html
@@ -421,7 +422,7 @@ you should place your code here."
      (make-lsp-client :new-connection (lsp-tramp-connection "gopls")
                       :major-modes '(go-mode)
                       :remote? t
-                      :server-id 'gopls))
+                      :server-id 'gopls-remote))
     )
   ;; (eval-after-load "hideshow"
   ;;   '(add-to-list 'hs-special-modes-alist
