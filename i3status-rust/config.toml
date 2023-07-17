@@ -44,3 +44,7 @@ cmd = "kitty wtfutil"
 [[block]]
 block = "sound"
 headphones_indicator = true
+# added a little more space since the volume icon
+# can expand depending on the volume i.e 100% volume
+# will have a larger icon than 5% volume or even mute
+format = " $icon   $output_description{ $volume|} "
