@@ -266,7 +266,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
-    	bindsym Ctrl+g mode "default"
+        bindsym Ctrl+g mode "default"
 }
 
 # Set workspace movement mode
