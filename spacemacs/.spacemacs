@@ -354,7 +354,7 @@ you should place your code here."
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
   (global-set-key (kbd "M-/") 'counsel-rg)
   (spacemacs/declare-prefix "o" "user")
-  (spacemacs/set-leader-keys "oc" 'counsel-imenu)
+  (spacemacs/set-leader-keys "oc" 'helm-imenu)
   (spacemacs/set-leader-keys "om" 'mc/mark-next-like-this)
   (spacemacs/set-leader-keys "of" 'yafolding-toggle-element)
   ;; BEHAVIOR CHANGES
