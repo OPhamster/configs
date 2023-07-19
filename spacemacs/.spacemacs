@@ -420,7 +420,7 @@ you should place your code here."
                       :server-id 'clangd-remote))
     ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/5550e12616cbe7fbe9d85bd0a8bd504abeb54f4b/clients/lsp-go.el#L320-L331
     (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection "gopls")
+     (make-lsp-client :new-connection (lsp-tramp-connection '("gopls" "-remote=auto" "-remote.logfile=gopls.log"))
                       :major-modes '(go-mode)
                       :language-id "go"
                       :completion-in-comments? t
