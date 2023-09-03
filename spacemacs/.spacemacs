@@ -66,7 +66,8 @@ values."
           org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "DONE"))
           org-agenda-files '("~/Dropbox/agenda"))
      protobuf
-     python
+     (python :variables
+             python-backend 'anaconda)
      (ruby :variables
            ruby-backend nil
            ruby-insert-encoding-magic-comment nil
