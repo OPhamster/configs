@@ -403,7 +403,7 @@ you should place your code here."
   ;;                     :remote? t
   ;;                     :server-id 'solargraph-remote)))
   ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/057e8789638a0bf493930637185694b6b09ea58e/lsp-rust.el#L303
-  ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/e4efbab6704e6b1241cccfa0992dbcc4ba08cdcb/lsp-metals.el#L160
+  ;; Ref: https://github.com/emacs-lsp/lsp-metals/blob/da7e54ed65f4e153c94b9c54689908dce142ef37/lsp-metals.el#L940-L977
   ;; NOTE: The idea is to make the tramp connection just like the layer normally would except that it would
   ;; normally make it on an 'lsp-stdio-connection and we would make it on an 'lsp-tramp-connection since we're
   ;; interacting with a container
@@ -414,8 +414,13 @@ you should place your code here."
                       :priority -1
                       :remote? t
                       :notification-handlers (ht ("metals/executeClientCommand" #'lsp-metals--execute-client-command)
+                                                 ("metals/publishDecorations" #'lsp-metals--publish-decorations)
+                                                 ("$/cancelRequest" #'lsp-metals--cancel-request)
+                                                 ("metals/status" #'lsp-metals--status-string)
                                                  ("metals/treeViewDidChange" #'ignore))
+                      :async-request-handlers (ht ("metals/slowTask" #'lsp-metals--slow-task))
 		                  :server-id 'metals-remote
+                      :completion-in-comments? t
                       :initialized-fn (lambda (workspace)
                                         (with-lsp-workspace workspace
                                           (lsp--set-configuration
