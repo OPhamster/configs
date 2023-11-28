@@ -408,6 +408,7 @@ you should place your code here."
   ;; normally make it on an 'lsp-stdio-connection and we would make it on an 'lsp-tramp-connection since we're
   ;; interacting with a container
   (with-eval-after-load 'lsp-mode
+    (add-hook 'lsp-after-uninitialized-functions #'lsp-metals--on-workspace-shutdown)
     (lsp-register-client
      (make-lsp-client :new-connection (lsp-tramp-connection "metals-emacs")
                       :major-modes '(scala-mode)
@@ -418,6 +419,8 @@ you should place your code here."
                                                  ("$/cancelRequest" #'lsp-metals--cancel-request)
                                                  ("metals/status" #'lsp-metals--status-string)
                                                  ("metals/treeViewDidChange" #'ignore))
+                      :request-handlers (ht ("metals/quickPick" #'lsp-metals--quick-pick)
+                                            ("metals/inputBox" #'lsp-metals--input-box))
                       :async-request-handlers (ht ("metals/slowTask" #'lsp-metals--slow-task))
 		                  :server-id 'metals-remote
                       :completion-in-comments? t
