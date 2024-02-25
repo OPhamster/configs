@@ -515,6 +515,7 @@ This function is called at the very end of Spacemacs initialization."
      (340 . "#fff59d")
      (360 . "#8bc34a")))
  '(vc-annotate-very-old-color nil)
+ '(vterm-always-compile-module t)
  '(warning-suppress-log-types
    '(((defvaralias losing-value ac-user-dictionary-files))
      ((defvaralias losing-value ac-user-dictionary-files))
