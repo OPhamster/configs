@@ -87,10 +87,11 @@ bindsym $mod+F2 exec firefox -p personal
 bindsym $mod+Ctrl+F2 exec firefox -p work
 bindsym $mod+F3 exec $terminal -e ranger -r ranger --show
 bindsym $mod+Ctrl+F3 exec pcmanfm
-# moved from snap packages coz it's stoopid.
-# Flatpak or `yay` installs perform much better and don't
-# tax the system when idle
-bindsym $mod+F4 exec flatpak run com.spotify.Client
+# Installed via AUR package manager, flatpak install although inline with the
+# releases and less stupid that the `snap` equivalent, for whatever reason
+# wasn't letting me login. Symptoms similar to https://www.reddit.com/r/flatpak/comments/13p7ldf/spotify_wants_to_open_a_browser_tab_but_wont/
+# but the same reason.
+bindsym $mod+F4 exec spotify
 bindsym $mod+F5 exec gimp
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id $picom
