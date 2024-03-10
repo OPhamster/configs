@@ -85,7 +85,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+F1 exec emacsclient -c -a=""
 bindsym $mod+F2 exec firefox -p personal
 bindsym $mod+Ctrl+F2 exec firefox -p work
-bindsym $mod+F3 exec $terminal -e ranger -r ranger --show
+bindsym $mod+F3 exec $terminal --profile ophamster -e ranger
 bindsym $mod+Ctrl+F3 exec pcmanfm
 # Installed via AUR package manager, flatpak install although inline with the
 # releases and less stupid that the `snap` equivalent, for whatever reason
