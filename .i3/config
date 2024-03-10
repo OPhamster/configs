@@ -16,7 +16,6 @@ set $down j
 set $left h
 set $right l
 set $mod Mod4
-# TODO: get this to work
 set $terminal konsole
 set $rofim rofi-man
 # set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
@@ -55,6 +54,9 @@ exec_always --no-startup-id guake
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id dropbox start
 exec emacs --daemon
+
+# work @clarisights
+exec_always --no-startup-id ~/.local/bin/DrSprinto-4.0.7.AppImage
 
 
 # exec --no-startup-id kitty --name wtfutil wtfutil
