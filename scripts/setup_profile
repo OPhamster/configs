@@ -1,11 +1,11 @@
 #!/bin/bash
 
-$PROFILE=~/.profile
+PROFILE=~/.profile
 
 function export_variables() {
 	# required by rofi-man
 	echo "# required by rofi-man" >> $PROFILE
-	echo "export MAN_TERM=kitty" >> $PROFILE
+	echo "export MAN_TERM=konsole" >> $PROFILE
 	echo "export PATH=$PATH:$HOME/.local/bin" >> $PROFILE
 	# required by go
 	echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $PROFILE
