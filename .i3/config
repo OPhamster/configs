@@ -85,8 +85,8 @@ bindsym $mod+Return exec $terminal
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+F1 exec emacsclient -c -a=""
-bindsym $mod+F2 exec firefox -p personal
-bindsym $mod+Ctrl+F2 exec firefox -p work
+bindsym $mod+F2 exec firefox -p personal; exec notify-send 'firefox@personal'
+bindsym $mod+Ctrl+F2 exec firefox -p work; exec notify-send 'firefox@work'
 bindsym $mod+F3 exec $terminal --profile ophamster -e ranger
 bindsym $mod+Ctrl+F3 exec pcmanfm
 # Installed via AUR package manager, flatpak install although inline with the
@@ -95,10 +95,10 @@ bindsym $mod+Ctrl+F3 exec pcmanfm
 # but the same reason.
 bindsym $mod+F4 exec spotify
 bindsym $mod+F5 exec gimp
-bindsym $mod+t exec --no-startup-id pkill picom
+bindsym $mod+t exec --no-startup-id pkill picom; exec notify-send 'killed picom'
 bindsym $mod+Ctrl+t exec --no-startup-id $picom
 # bindsym Print --release exec --no-startup-id i3-scrot -s
-bindsym Print --release exec --no-startup-id $screenshotter
+bindsym Print --release exec --no-startup-id $screenshotter; exec notify-send 'screenshot'
 # bindsym Ctrl+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
