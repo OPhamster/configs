@@ -417,20 +417,8 @@ you should place your code here."
                       :major-modes '(scala-mode)
                       :priority -1
                       :remote? t
-                      :notification-handlers (ht ("metals/executeClientCommand" #'lsp-metals--execute-client-command)
-                                                 ("metals/publishDecorations" #'lsp-metals--publish-decorations)
-                                                 ("$/cancelRequest" #'lsp-metals--cancel-request)
-                                                 ("metals/status" #'lsp-metals--status-string)
-                                                 ("metals/treeViewDidChange" #'ignore))
-                      :request-handlers (ht ("metals/quickPick" #'lsp-metals--quick-pick)
-                                            ("metals/inputBox" #'lsp-metals--input-box))
-                      :async-request-handlers (ht ("metals/slowTask" #'lsp-metals--slow-task))
 		                  :server-id 'metals-remote
-                      :completion-in-comments? t
-                      :initialized-fn (lambda (workspace)
-                                        (with-lsp-workspace workspace
-                                          (lsp--set-configuration
-                                           (lsp-configuration-section "metals"))))))
+                      :completion-in-comments? t))
     (lsp-register-client
      (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
                       :major-modes '(c-mode c++-mode)
