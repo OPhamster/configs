@@ -410,34 +410,34 @@ you should place your code here."
   ;; NOTE: The idea is to make the tramp connection just like the layer normally would except that it would
   ;; normally make it on an 'lsp-stdio-connection and we would make it on an 'lsp-tramp-connection since we're
   ;; interacting with a container
-  (with-eval-after-load 'lsp-mode
-    (add-hook 'lsp-after-uninitialized-functions #'lsp-metals--on-workspace-shutdown)
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection "metals-emacs")
-                      :major-modes '(scala-mode)
-                      :priority -1
-                      :remote? t
-		                  :server-id 'metals-remote
-                      :completion-in-comments? t))
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
-                      :major-modes '(c-mode c++-mode)
-                      :remote? t
-                      :server-id 'clangd-remote))
-    ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/5550e12616cbe7fbe9d85bd0a8bd504abeb54f4b/clients/lsp-go.el#L320-L331
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection '("gopls" "-remote=auto" "-remote.logfile=gopls.log"))
-                      :major-modes '(go-mode)
-                      :language-id "go"
-                      :completion-in-comments? t
-                      :activation-fn (lsp-activate-on "go" "go.mod")
-                      :remote? t
-                      :library-folders-fn #'lsp-go--library-default-directories
-                      :server-id 'gopls-remote
-                      :after-open-fn (lambda ()
-                                       ;; https://github.com/golang/tools/commit/b2d8b0336
-                                       (setq-local lsp-completion-filter-on-incomplete nil))))
-    )
+  ;; (with-eval-after-load 'lsp-mode
+    ;; (add-hook 'lsp-after-uninitialized-functions #'lsp-metals--on-workspace-shutdown)
+    ;; (lsp-register-client
+    ;;  (make-lsp-client :new-connection (lsp-tramp-connection "metals-emacs")
+    ;;                   :major-modes '(scala-mode)
+    ;;                   :priority -1
+    ;;                   :remote? t
+		;;                   :server-id 'metals-remote
+    ;;                   :completion-in-comments? t))
+    ;; (lsp-register-client
+    ;;  (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+    ;;                   :major-modes '(c-mode c++-mode)
+    ;;                   :remote? t
+    ;;                   :server-id 'clangd-remote))
+    ;; ;; Ref: https://github.com/emacs-lsp/lsp-mode/blob/5550e12616cbe7fbe9d85bd0a8bd504abeb54f4b/clients/lsp-go.el#L320-L331
+    ;; (lsp-register-client
+    ;;  (make-lsp-client :new-connection (lsp-tramp-connection '("gopls" "-remote=auto" "-remote.logfile=gopls.log"))
+    ;;                   :major-modes '(go-mode)
+    ;;                   :language-id "go"
+    ;;                   :completion-in-comments? t
+    ;;                   :activation-fn (lsp-activate-on "go" "go.mod")
+    ;;                   :remote? t
+    ;;                   :library-folders-fn #'lsp-go--library-default-directories
+    ;;                   :server-id 'gopls-remote
+    ;;                   :after-open-fn (lambda ()
+    ;;                                    ;; https://github.com/golang/tools/commit/b2d8b0336
+    ;;                                    (setq-local lsp-completion-filter-on-incomplete nil))))
+    ;; )
   ;; (eval-after-load "hideshow"
   ;;   '(add-to-list 'hs-special-modes-alist
   ;;                 `(ruby-mode
