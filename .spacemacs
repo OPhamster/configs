@@ -65,7 +65,7 @@ values."
      multiple-cursors
      (org :variables
           org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "DONE"))
-          org-agenda-files '("~/Dropbox/agenda"))
+          org-agenda-files '("~/org"))
      protobuf
      (python :variables
              python-backend 'anaconda)
@@ -481,27 +481,60 @@ This function is called at the very end of Spacemacs initialization."
  '(ivy-case-fold-search-default nil)
  '(lsp-metals-server-command "metals-emacs")
  '(package-selected-packages
-   '(flyspell-correct-ivy flyspell-popup web-beautify systemd livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc go-guru go-eldoc csv-mode company-go go-mode coffee-mode yapfify terraform-mode hcl-mode pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode sql-indent smeargle rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake orgit mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient disaster company-statistics company-c-headers company cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(flyspell-correct-ivy flyspell-popup web-beautify systemd livid-mode
+                          skewer-mode simple-httpd json-mode json-snatcher
+                          json-reformat js2-refactor multiple-cursors js2-mode
+                          js-doc go-guru go-eldoc csv-mode company-go go-mode
+                          coffee-mode yapfify terraform-mode hcl-mode pyvenv
+                          pytest pyenv-mode py-isort pip-requirements
+                          live-py-mode hy-mode dash-functional helm-pydoc
+                          cython-mode company-anaconda anaconda-mode pythonic
+                          yaml-mode sql-indent smeargle rvm ruby-tools
+                          ruby-test-mode rubocop rspec-mode robe rbenv rake
+                          orgit mmm-mode minitest markdown-toc markdown-mode
+                          magit-gitflow magit-popup helm-gitignore helm-company
+                          helm-c-yasnippet gitignore-mode gitconfig-mode
+                          gitattributes-mode git-timemachine git-messenger
+                          git-link gh-md fuzzy flyspell-correct-helm
+                          flyspell-correct flycheck-pos-tip pos-tip flycheck
+                          evil-magit magit git-commit with-editor transient
+                          disaster company-statistics company-c-headers company
+                          cmake-mode clang-format chruby bundler inf-ruby
+                          auto-yasnippet yasnippet auto-dictionary ac-ispell
+                          auto-complete ws-butler winum which-key
+                          volatile-highlights vi-tilde-fringe uuidgen
+                          use-package toc-org spaceline powerline restart-emacs
+                          request rainbow-delimiters popwin persp-mode pcre2el
+                          paradox spinner org-plus-contrib org-bullets
+                          open-junk-file neotree move-text macrostep lorem-ipsum
+                          linum-relative link-hint indent-guide hydra lv
+                          hungry-delete hl-todo highlight-parentheses
+                          highlight-numbers parent-mode highlight-indentation
+                          helm-themes helm-swoop helm-projectile projectile
+                          pkg-info epl helm-mode-manager helm-make helm-flx
+                          helm-descbinds helm-ag google-translate golden-ratio
+                          flx-ido flx fill-column-indicator fancy-battery
+                          eyebrowse expand-region exec-path-from-shell
+                          evil-visualstar evil-visual-mark-mode evil-unimpaired
+                          f evil-tutor evil-surround
+                          evil-search-highlight-persist highlight evil-numbers
+                          evil-nerd-commenter evil-mc evil-matchit
+                          evil-lisp-state smartparens evil-indent-plus
+                          evil-iedit-state iedit evil-exchange evil-escape
+                          evil-ediff evil-args evil-anzu anzu evil goto-chg
+                          undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash
+                          s diminish define-word column-enforce-mode
+                          clean-aindent-mode bind-map bind-key
+                          auto-highlight-symbol auto-compile packed
+                          aggressive-indent adaptive-wrap ace-window ace-link
+                          ace-jump-helm-line helm avy helm-core popup async))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
-   '((20 . "#f36c60")
-     (40 . "#ff9800")
-     (60 . "#fff59d")
-     (80 . "#8bc34a")
-     (100 . "#81d4fa")
-     (120 . "#4dd0e1")
-     (140 . "#b39ddb")
-     (160 . "#f36c60")
-     (180 . "#ff9800")
-     (200 . "#fff59d")
-     (220 . "#8bc34a")
-     (240 . "#81d4fa")
-     (260 . "#4dd0e1")
-     (280 . "#b39ddb")
-     (300 . "#f36c60")
-     (320 . "#ff9800")
-     (340 . "#fff59d")
-     (360 . "#8bc34a")))
+   '((20 . "#f36c60") (40 . "#ff9800") (60 . "#fff59d") (80 . "#8bc34a")
+     (100 . "#81d4fa") (120 . "#4dd0e1") (140 . "#b39ddb") (160 . "#f36c60")
+     (180 . "#ff9800") (200 . "#fff59d") (220 . "#8bc34a") (240 . "#81d4fa")
+     (260 . "#4dd0e1") (280 . "#b39ddb") (300 . "#f36c60") (320 . "#ff9800")
+     (340 . "#fff59d") (360 . "#8bc34a")))
  '(vc-annotate-very-old-color nil)
  '(vterm-always-compile-module t)
  '(warning-suppress-log-types
