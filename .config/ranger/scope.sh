@@ -155,10 +155,6 @@ handle_image() {
                   - "${IMAGE_CACHE_PATH}" < "${FILE_PATH}" \
                   && exit 6 || exit 1;;
 
-        ## GIF
-        image/gif)
-            mpv "${FILE_PATH}" && exit 6 | exit 1;;
-
         ## Image
         image/*)
             local orientation
@@ -174,13 +170,22 @@ handle_image() {
             ## as above), but might fail for unsupported types.
             exit 7;;
 
-        ## Video
-        # video/*)
-        #     # Get embedded thumbnail
-        #     ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
-        #     # Get frame 10% into video
-        #     ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
-        #     exit 1;;
+        gif)
+            v=$((10))
+            while true; do
+                ffmpegthumbnailer -i "${FILE_PATH}" -t"${v}%" -o "${IMAGE_CACHE_PATH}" -s 0
+                sleep 0.1
+                v=$(($((v+10))%100))
+            done
+            exit 7;;
+
+            ## Video
+        video/*)
+            # Get embedded thumbnail
+            ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
+            # Get frame 10% into video
+            ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+            exit 1;;
 
         ## Audio
         # audio/*)
