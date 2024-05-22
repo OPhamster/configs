@@ -35,7 +35,6 @@ values."
                     shell-scripts-backend nil)
      ansible
      (auto-completion :variables
-                      spacemacs-default-company-backends '(company-files company-capf)
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-enable-help-tooltip t)
@@ -171,7 +170,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-city-lights spacemacs-dark)
+   dotspacemacs-themes '(doom-tokyo-night spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
