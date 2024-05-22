@@ -94,7 +94,7 @@ bindsym $mod+Ctrl+F3 exec pcmanfm
 # releases and less stupid that the `snap` equivalent, for whatever reason
 # wasn't letting me login. Symptoms similar to https://www.reddit.com/r/flatpak/comments/13p7ldf/spotify_wants_to_open_a_browser_tab_but_wont/
 # but the same reason.
-bindsym $mod+F4 exec spotify
+bindsym $mod+F4 exec flatpak run com.spotify.Client
 bindsym $mod+F5 exec gimp
 bindsym $mod+t exec --no-startup-id pkill picom; exec notify-send 'killed picom'
 bindsym $mod+Ctrl+t exec --no-startup-id $picom

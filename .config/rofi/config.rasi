@@ -57,4 +57,5 @@ configuration {
 	max-history-size: 25;
 	combi-hide-mode-prefix: false;
 }
-@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/usr/share/rofi/themes/fancy.rasi"
