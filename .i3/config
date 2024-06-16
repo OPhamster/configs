@@ -45,7 +45,7 @@ exec --no-startup-id pulseaudio -k && pulseaudio --start
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-exec --no-startup-id blueman-applet
+exec_always --no-startup-id blueman-applet
 # exec --no-startup-id pa-applet
 
 # clipboard-manager
@@ -352,12 +352,12 @@ set_from_resource	$color14	color14
 set_from_resource	$color15	color15
 
 # Theme colors
-# class                 border  	backgr. 	text    	indic.  	child_border
-client.focused         	$color6	        $color6	    	$background	$color6		$color6
+# class                 border  	  backgr. 	 text    	    indic.  	  child_border
+client.focused         	$color15	  $color15	 $background	$color15		$color15
 client.unfocused       	$background	$background	$foreground	$background	$background
 client.focused_inactive	$foreground	$background	$foreground	$background	$background
-client.urgent		$foreground	$background	$foreground	$background	$background
-client.placeholder	$foreground	$background	$foreground	$background	$background
+client.urgent		        $foreground	$background	$foreground	$background	$background
+client.placeholder	    $foreground	$background	$foreground	$background	$background
 
 ###############################################################################
 
