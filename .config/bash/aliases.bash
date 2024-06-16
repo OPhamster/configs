@@ -1,6 +1,14 @@
-# batcat
-type -p batcat > /dev/null
+# bat
+
+BAT=bat
+# debian systems have this bin as `batcat`
+type -p apt > /dev/null
 if [[ $? -eq 0 ]]; then
-    export MANPAGER="sh -c 'col -bx | batcat -l man -p --theme Coldark-Dark'"
-    alias cat=batcat
+    BAT=batcat
+fi
+
+type -p $BAT > /dev/null
+if [[ $? -eq 0 ]]; then
+    export MANROFFOPT="-c" MANPAGER="sh -c 'col -bx | ${BAT} -l man -p --theme Coldark-Dark'"
+    alias cat='${BAT} --paging=never'
 fi
