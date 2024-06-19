@@ -120,8 +120,8 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth no
-hide_edge_borders smart
 smart_borders on
+hide_edge_borders none
 force_display_urgency_hint 500 ms
 
 # change focus
@@ -381,8 +381,9 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 # }
 
 ######## Window Exclusions
-for_window [class="Yad"] floating enable
 for_window [all] title_window_icon on
+for_window [all] border pixel 2
+
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
