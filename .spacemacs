@@ -67,7 +67,7 @@ values."
           org-agenda-files '("~/org"))
      protobuf
      (python :variables
-             python-backend 'anaconda)
+             python-backend 'lsp)
      (ruby :variables
            ruby-backend nil
            ruby-insert-encoding-magic-comment nil
