@@ -16,7 +16,7 @@ set $down j
 set $left h
 set $right l
 set $mod Mod4
-set $terminal konsole
+set $terminal kitty
 set $rofim rofi-man
 # set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
 set $locker dm-tool lock
@@ -88,7 +88,8 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+F1 exec emacsclient -c -a=""
 bindsym $mod+F2 exec firefox -p personal; exec notify-send 'firefox@personal'
 bindsym $mod+Ctrl+F2 exec firefox -p work; exec notify-send 'firefox@work'
-bindsym $mod+F3 exec $terminal --profile ophamster -e ranger
+# bindsym $mod+F3 exec $terminal --profile ophamster -e ranger
+bindsym $mod+F3 exec $terminal ranger
 bindsym $mod+Ctrl+F3 exec pcmanfm
 # Installed via AUR package manager, flatpak install although inline with the
 # releases and less stupid that the `snap` equivalent, for whatever reason
