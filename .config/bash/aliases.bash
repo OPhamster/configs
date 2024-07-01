@@ -18,3 +18,8 @@ type -p pinfo > /dev/null
 if [[ $? -eq 0 ]]; then
     alias info=pinfo
 fi
+
+# kitty integration
+if [[ $TERM == "xterm-kitty" ]]; then
+    alias ssh='kitten ssh'
+fi
