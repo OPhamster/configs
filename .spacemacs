@@ -445,7 +445,9 @@ you should place your code here."
   ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
   ;;                   ruby-forward-sexp nil)))
   (with-eval-after-load 'tramp
-    (cl-pushnew 'tramp-own-remote-path tramp-remote-path)))
+    (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
+  (with-eval-after-load 'lsp-metals
+    (setq lsp-log-io t)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -478,7 +480,6 @@ This function is called at the very end of Spacemacs initialization."
  '(fci-rule-color "#37474f")
  '(hl-sexp-background-color "#1c1f26")
  '(ivy-case-fold-search-default nil)
- '(lsp-metals-server-command "metals-emacs")
  '(package-selected-packages
    '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap
                aggressive-indent anaconda-mode anzu async auto-compile
