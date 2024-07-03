@@ -23,3 +23,15 @@ fi
 if [[ $TERM == "xterm-kitty" ]]; then
     alias ssh='kitten ssh'
 fi
+
+commando() {
+  if [[ "$?" == "0" ]]; then
+    # green
+    echo -e '\e[32m✓\e[0m '
+  else
+    # red
+    echo -e '\e[31m✝\e[0m '
+  fi
+}
+
+PS1="$PS1"'$(commando)'
