@@ -42,7 +42,7 @@ exec_always --no-startup-id dunst
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id pulseaudio -k && pulseaudio --start
-exec --no-startup-id kdeconnect-indicator
+exec_always --no-startup-id kdeconnect-indicator
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec_always --no-startup-id blueman-applet
@@ -57,7 +57,7 @@ exec --no-startup-id dropbox start
 exec emacs --daemon
 
 # work @clarisights
-exec_always --no-startup-id ~/.local/bin/DrSprinto-4.0.7.AppImage
+exec --no-startup-id ~/.local/bin/DrSprinto-4.0.7.AppImage
 
 
 # exec --no-startup-id kitty --name wtfutil wtfutil
@@ -286,8 +286,8 @@ mode "$move_workspace" {
     bindsym l move workspace to output right; exec notify-send 'move workspace to right output', mode "default"
     bindsym c move workspace to output current; exec notify-send 'move workspace to current output', mode "default"
     bindsym p move workspace to output primary; exec notify-send 'move workspace to primary output', mode "default"
-    bindsym o exec --no-startup-id /usr/local/bin/office_dual.sh; exec notify-send 'moved to office layout', mode "default"
-    bindsym m exec --no-startup-id /usr/local/bin/dual.sh; exec notify-send 'moved to home layout', mode "default"
+    bindsym o exec --no-startup-id ~/.local/bin/office_dual.sh; exec notify-send 'moved to office layout', mode "default"
+    bindsym m exec --no-startup-id ~/.local/bin/dual.sh; exec notify-send 'moved to home layout', mode "default"
     bindsym s exec --no-startup-id /usr/bin/xrandr --auto; exec notify-send 'moved to single display', mode "default"
 
     # exit system mode: "Enter" or "Escape"
