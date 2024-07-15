@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# set -ex
+if [[ $(type -p brightnessctl > /dev/null) -eq 0 ]]; then
+  device=$(brightnessctl -l | grep 'kbd_backlight' | cut -d ' ' -f 2 | tr -d "'")
+  brightnessctl --device="$device" s 2
+fi
