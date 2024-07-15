@@ -20,7 +20,7 @@ set $terminal kitty
 set $rofim rofi-man
 # set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
 set $locker dm-tool lock
-set $screenshotter maim ~/Pictures/screenshots/$(date +%s)_maim.png -u -s
+set $screenshotter ~/scripts/screenshot
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
