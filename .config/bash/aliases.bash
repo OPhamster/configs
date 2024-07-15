@@ -4,7 +4,7 @@ BAT=bat
 # debian systems have this bin as `batcat`
 type -p apt > /dev/null
 if [[ $? -eq 0 ]]; then
-    BAT=batcat
+    alias BAT=batcat
 fi
 
 type -p $BAT > /dev/null
@@ -23,6 +23,8 @@ fi
 if [[ $TERM == "xterm-kitty" ]]; then
     alias ssh='kitten ssh'
 fi
+
+alias convert=magick
 
 commando() {
   if [[ "$?" == "0" ]]; then
