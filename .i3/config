@@ -321,7 +321,7 @@ mode "$dunst_activities" {
      bindsym r exec killall dunst; exec notify-send 'restart dunst', mode "default"
      # the sleep 10 is because if I don't - the set-paused takes over and I don't see the
      # DND ACTIVE notification
-     bindsym d exec notify-send -u critical 'Do Not Disturb Active'; exec dunstctl history-pop && dunstctl set-paused active, mode "default"
+     bindsym d exec dunstctl history-clear && notify-send -u critical 'Do Not Disturb Active'; exec dunstctl history-pop && sleep 2 && dunstctl set-paused true, mode "default"
      bindsym s exec dunstctl set-paused false && exec notify-send -u critical 'Do Not Disturb Inactive', mode "default"
 
 
