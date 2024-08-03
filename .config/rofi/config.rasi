@@ -1,6 +1,5 @@
 configuration {
 	modi: "drun,run,calc,keys";
-  font: "Roboto Normal 9";
 	width: 10;
 	lines: 5;
 	columns: 2;
@@ -18,6 +17,9 @@ configuration {
 	drun-match-fields: "name,generic,exec,categories,keywords";
 	drun-categories: "";
 	drun-show-actions: false;
+  display-drun: " ";
+  display-run: ">_";
+  display-calc: "🖩";
 	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
 	drun-url-launcher: "xdg-open";
 	disable-history: false;
@@ -57,4 +59,4 @@ configuration {
 	max-history-size: 25;
 	combi-hide-mode-prefix: false;
 }
-@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+@theme "one-dark.rasi"
