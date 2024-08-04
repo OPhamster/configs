@@ -1,10 +1,10 @@
 [global]
-    origin = "bottom-right"
-    frame_width = 1
+    origin = "top-right"
+    frame_width = 5
     frame_color = "#788388"
     corner_radius = 7
 
-    font = Iosevka 10
+    font = Iosevka Nerd 10
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -42,7 +42,7 @@
     # window allows bounces back and forth.
     # This option conflicts with "word_wrap".
     # Set to 0 to disable.
-    bounce_freq = 5
+    bounce_freq = 0
 
 
     # Show age of message if message is older than show_age_threshold
@@ -70,7 +70,10 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0x4-25+25"
+    # geometry = "1x2-25+25"
+    height = 70
+    width = 0
+    offset = 25
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -88,7 +91,7 @@
     idle_threshold = 0
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    # monitor = 0
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -116,7 +119,7 @@
     # The height of a single line.  If the height is smaller than the
     # font height, it will get raised to the font height.
     # This adds empty space above and under the text.
-    line_height = 0
+    line_height = 10
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -125,10 +128,10 @@
 
     # Padding between text and separator.
     # padding = 8
-    padding = 8
+    padding = 2
 
     # Horizontal padding.
-    horizontal_padding = 10
+    horizontal_padding = 5
 
     # Define a color for the separator.
     # possible values are:
@@ -136,7 +139,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = #263238
+    separator_color = "#263238"
 
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -150,7 +153,7 @@
     browser = firefox
 
     # Align icons left/right/off
-    icon_position = left
+    icon_position = right
 
     # Paths to default icons.
     # icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
@@ -184,19 +187,19 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#00b894"
-    foreground = "#2d3436"
-    timeout = 10
+    background = "#1E2127FF"
+    foreground = "#FFFFFFFF"
+    timeout = 3
 
 [urgency_normal]
-    background = "#6c5ce7"
-    foreground = "#F9FAF9"
-    timeout = 10
+    background = "#1E2127FF"
+    foreground = "#FFFFFFFF"
+    timeout = 5
 
 [urgency_critical]
-    background = "#fd79a8"
-    foreground = "#2d3436"
-    timeout = 0
+    background = "#FFFFFFFF"
+    foreground = "#1E2127FF"
+    timeout = 10
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -217,16 +220,16 @@
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
-
+# The format of the message.  Possible variables are:
+#   %a  appname
+#   %s  summary
+#   %b  body
+#   %i  iconname (including its path)
+#   %I  iconname (without its path)
+#   %p  progress value if set ([  0%] to [100%]) or nothing
+# Markup is allowed
 [pa-applet]
-    # The format of the message.  Possible variables are:
-    #   %a  appname
-    #   %s  summary
-    #   %b  body
-    #   %i  iconname (including its path)
-    #   %I  iconname (without its path)
-    #   %p  progress value if set ([  0%] to [100%]) or nothing
-    # Markup is allowed
+    
     appname = "pa-applet"
     new_icon = "/usr/share/icons/Papirus/48x48/apps/pa-applet.svg"
 
@@ -294,23 +297,23 @@
 #    background = "#A8EB41"
 #    foreground = "#FFFFFF"
 #
-[irc]
-        appname = weechat
-        timeout = 0
-        background = "#0033bb"
-        foreground = "#dddddd"
+# [irc]
+#  appname = weechat
+#  timeout = 0
+#  background = "#0033bb"
+#  foreground = "#dddddd"
 #
-[weechat hl]
-     appname = weechat
-     category = weechat.HL
-     background = "#FF5C47"
-     foreground = "#FFFFFF"
+# [weechat hl]
+#     appname = weechat
+#     category = weechat.HL
+#     background = "#FF5C47"
+#     foreground = "#FFFFFF"
 #
-[weechat pn]
-     appname = weechat
-     category = weechat.PM
-     background = "#D53B84"
-     foreground = "#FFFFFF"
+# [weechat pn]
+#     appname = weechat
+#     category = weechat.PM
+#     background = "#D53B84"
+#     foreground = "#FFFFFF"
 #
 #[CMUS]
 #    appname = CMUS
