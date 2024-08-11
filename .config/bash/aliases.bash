@@ -36,4 +36,4 @@ commando() {
   fi
 }
 
-PS1="$PS1"'$(commando)'
+PS1='$(commando)'"$PS1"
