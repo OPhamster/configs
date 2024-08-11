@@ -68,6 +68,7 @@ values."
      protobuf
      (python :variables
              python-backend 'lsp)
+     puppet
      (ruby :variables
            ruby-backend 'lsp
            ruby-insert-encoding-magic-comment nil
@@ -80,8 +81,7 @@ values."
             shell-default-term-shell "/bin/bash"
             spacemacs-vterm-history-file-location "~/.bash_history"
             close-window-with-terminal t)
-     (spell-checking :variables enable-flyspell-auto-completion t
-                     spell-checking-enable-by-default t)
+     (spell-checking :variables spell-checking-enable-by-default t)
      sql
      (syntax-checking :variables
                       syntax-checking-enable-tooltips t
@@ -499,29 +499,29 @@ This function is called at the very end of Spacemacs initialization."
                  evil-unimpaired evil-visual-mark-mode evil-visualstar
                  exec-path-from-shell expand-region eyebrowse f fancy-battery
                  fill-column-indicator flx flx-ido flycheck flycheck-pos-tip
-                 flyspell-correct flyspell-correct-helm flyspell-correct-ivy
-                 flyspell-popup fuzzy gh-md git-commit git-link git-messenger
-                 git-timemachine gitattributes-mode gitconfig-mode gitignore-mode
-                 go-eldoc go-guru go-mode golden-ratio google-translate goto-chg
-                 hcl-mode helm helm-ag helm-c-yasnippet helm-company helm-core
-                 helm-descbinds helm-flx helm-gitignore helm-make
-                 helm-mode-manager helm-projectile helm-pydoc helm-swoop
-                 helm-themes highlight highlight-indentation highlight-numbers
-                 highlight-parentheses hl-todo hungry-delete hy-mode hydra iedit
-                 indent-guide inf-ruby js-doc js2-mode js2-refactor json-mode
-                 json-reformat json-snatcher link-hint linum-relative live-py-mode
-                 livid-mode lorem-ipsum lv macrostep magit magit-gitflow
-                 magit-popup markdown-mode markdown-toc minitest mmm-mode
-                 move-text multiple-cursors neotree open-junk-file org-bullets
-                 org-plus-contrib orgit packed paradox parent-mode pcre2el
-                 persp-mode pip-requirements pkg-info popup popwin pos-tip
-                 powerline projectile py-isort pyenv-mode pytest pythonic pyvenv
-                 rainbow-delimiters rake rbenv request restart-emacs robe
-                 rspec-mode rubocop ruby-test-mode ruby-tools rvm s simple-httpd
-                 skewer-mode smartparens smeargle spaceline spinner sql-indent
-                 systemd terraform-mode toc-org transient undo-tree use-package
-                 uuidgen vi-tilde-fringe volatile-highlights vterm web-beautify
-                 which-key winum with-editor ws-butler yaml-mode yapfify yasnippet))
+                 flyspell-correct flyspell-correct-helm fuzzy gh-md git-commit
+                 git-link git-messenger git-timemachine gitattributes-mode
+                 gitconfig-mode gitignore-mode go-eldoc go-guru go-mode
+                 golden-ratio google-translate goto-chg hcl-mode helm helm-ag
+                 helm-c-yasnippet helm-company helm-core helm-descbinds helm-flx
+                 helm-gitignore helm-make helm-mode-manager helm-projectile
+                 helm-pydoc helm-swoop helm-themes highlight highlight-indentation
+                 highlight-numbers highlight-parentheses hl-todo hungry-delete
+                 hy-mode hydra iedit indent-guide inf-ruby js-doc js2-mode
+                 js2-refactor json-mode json-reformat json-snatcher link-hint
+                 linum-relative live-py-mode livid-mode lorem-ipsum lv macrostep
+                 magit magit-gitflow magit-popup markdown-mode markdown-toc
+                 minitest mmm-mode move-text multiple-cursors neotree
+                 open-junk-file org-bullets org-plus-contrib orgit packed paradox
+                 parent-mode pcre2el persp-mode pip-requirements pkg-info popup
+                 popwin pos-tip powerline projectile puppet-mode py-isort
+                 pyenv-mode pytest pythonic pyvenv rainbow-delimiters rake rbenv
+                 request restart-emacs robe rspec-mode rubocop ruby-test-mode
+                 ruby-tools rvm s simple-httpd skewer-mode smartparens smeargle
+                 spaceline spinner sql-indent systemd terraform-mode toc-org
+                 transient undo-tree use-package uuidgen vi-tilde-fringe
+                 volatile-highlights web-beautify which-key winum with-editor
+                 ws-butler yaml-mode yapfify yasnippet))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map
      '((20 . "#f36c60") (40 . "#ff9800") (60 . "#fff59d") (80 . "#8bc34a")
