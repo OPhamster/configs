@@ -481,6 +481,7 @@ This function is called at the very end of Spacemacs initialization."
      [default bold shadow italic underline bold bold-italic bold])
    '(evil-want-Y-yank-to-eol nil)
    '(fci-rule-color "#37474f")
+   '(global-column-enforce-mode t)
    '(hl-sexp-background-color "#1c1f26")
    '(ivy-case-fold-search-default nil)
    '(package-selected-packages
