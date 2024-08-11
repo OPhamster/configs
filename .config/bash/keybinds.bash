@@ -1,6 +1,8 @@
 #  fzf
 __fzf_history__() {
-    eval $(history | tr -s " " | cut -d " " -f 3- | sort -u | uniq | fzf )
+    h=$(history | tr -s " " | cut -d " " -f 3- | sort -u | uniq | fzf )
+    echo $h
+    eval $h
 }
 
 type -p fzf > /dev/null
