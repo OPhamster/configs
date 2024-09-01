@@ -48,7 +48,8 @@ values."
      (elixir :variables
              elixir-backend 'alchemist)
      emacs-lisp
-     git
+     (git :variables git-enable-magit-todos-plugin t
+          magit-todos-upate-remote t)
      (go :variables
          go-use-golangci-lint t
          go-format-before-save t
@@ -203,9 +204,9 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$ t
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
@@ -515,14 +516,14 @@ This function is called at the very end of Spacemacs initialization."
                  minitest mmm-mode move-text multiple-cursors neotree
                  open-junk-file org-bullets org-plus-contrib orgit packed paradox
                  parent-mode pcre2el persp-mode pip-requirements pkg-info popup
-                 popwin pos-tip powerline projectile puppet-mode py-isort
-                 pyenv-mode pytest pythonic pyvenv rainbow-delimiters rake rbenv
-                 request restart-emacs robe rspec-mode rubocop ruby-test-mode
-                 ruby-tools rvm s simple-httpd skewer-mode smartparens smeargle
-                 spaceline spinner sql-indent systemd terraform-mode toc-org
-                 transient undo-tree use-package uuidgen vi-tilde-fringe
-                 volatile-highlights web-beautify which-key winum with-editor
-                 ws-butler yaml-mode yapfify yasnippet))
+                 popwin pos-tip powerline projectile py-isort pyenv-mode pytest
+                 pythonic pyvenv rainbow-delimiters rake rbenv request
+                 restart-emacs robe rspec-mode rubocop ruby-test-mode ruby-tools
+                 rvm s simple-httpd skewer-mode smartparens smeargle spaceline
+                 spinner sql-indent systemd terraform-mode toc-org transient
+                 undo-tree use-package uuidgen vi-tilde-fringe volatile-highlights
+                 vterm web-beautify which-key winum with-editor ws-butler
+                 yaml-mode yapfify yasnippet))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map
      '((20 . "#f36c60") (40 . "#ff9800") (60 . "#fff59d") (80 . "#8bc34a")
