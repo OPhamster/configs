@@ -123,13 +123,24 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 workspace_auto_back_and_forth no
 smart_borders on
 hide_edge_borders none
-force_display_urgency_hint 500 ms
+# This will keep the urgent focus for a while longer after we switch
+# to the workspace raising the urgency. This is so that amongst all the
+# other containers/applications present on the urgent workspace, we'll have
+# enough time to identify which application actually raised the urgency hint
+force_display_urgency_hint 3000 ms
+# This only allows u to move in a certain direction within a container, and when
+# u hit the edge of a container it will "wrap around" to the opposite end and start
+# from there again. If u need to switch to a window which does not share a parent,
+# then u need to EXPLICITLY move up ancestors till they share the parent and then
+# are able to move in the direction u want and get this application/container.
+focus_wrapping force
 
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+mouse_warping output
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
