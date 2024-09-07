@@ -99,7 +99,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(doom-themes yafolding sqlite3 cmake-mode)
+   dotspacemacs-additional-packages '(doom-themes yafolding sqlite3 cmake-mode xclip)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -445,6 +445,7 @@ you should place your code here."
   ;;                   ,(rx (or "}" "]" "end"))                       ; Block end
   ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
   ;;                   ruby-forward-sexp nil)))
+  (xclip-mode 1)
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
   (with-eval-after-load 'lsp-metals
@@ -522,7 +523,7 @@ This function is called at the very end of Spacemacs initialization."
                  rvm s simple-httpd skewer-mode smartparens smeargle spaceline
                  spinner sql-indent systemd terraform-mode toc-org transient
                  undo-tree use-package uuidgen vi-tilde-fringe volatile-highlights
-                 vterm web-beautify which-key winum with-editor ws-butler
+                 vterm web-beautify which-key winum with-editor ws-butler xclip
                  yaml-mode yapfify yasnippet))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map

@@ -27,4 +27,4 @@ fi
 
 alias convert=magick
 
-alias vim="emacsclient -c -a=''"
+alias vim="emacsclient -c -a='' -nw"
