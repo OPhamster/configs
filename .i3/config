@@ -17,6 +17,7 @@ set $left h
 set $right l
 set $mod Mod4
 set $terminal kitty
+set $browser flatpak run io.github.zen_browser.zen
 set $rofim rofi-man
 # set $locker i3lock -t -i /usr/share/backgrounds/sekiro.png
 set $locker dm-tool lock
@@ -88,8 +89,8 @@ bindsym $mod+Return exec $terminal
 # confirm_os_window_close will ensure that confirmation on window close is not done, to preserve
 # the behavior before this change when running it in an X11 window directly and not in a terminal
 bindsym $mod+F1 exec $terminal -o confirm_os_window_close=0 emacsclient -c -a='' -nw
-bindsym $mod+F2 exec firefox -p personal; exec notify-send 'firefox@personal'
-bindsym $mod+Ctrl+F2 exec firefox -p work; exec notify-send 'firefox@work'
+bindsym $mod+F2 exec $browser -p personal; exec notify-send 'zen@personal'
+bindsym $mod+Ctrl+F2 exec $browser -p work; exec notify-send 'zen@work'
 # bindsym $mod+F3 exec $terminal --profile ophamster -e ranger
 bindsym $mod+F3 exec $terminal ranger
 bindsym $mod+Ctrl+F3 exec pcmanfm
