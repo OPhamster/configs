@@ -17,3 +17,7 @@ fi
 if [[ -e ~/.config/zsh/aliases.zsh ]]; then
   source ~/.config/zsh/aliases.zsh
 fi
+
+if [[ -e ~/.config/zsh/keybinds.zsh ]]; then
+    source ~/.config/zsh/keybinds.zsh
+fi
