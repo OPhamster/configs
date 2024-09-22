@@ -48,8 +48,7 @@ values."
      (elixir :variables
              elixir-backend 'alchemist)
      emacs-lisp
-     (git :variables git-enable-magit-todos-plugin t
-          magit-todos-upate-remote t)
+     git
      (go :variables
          go-use-golangci-lint t
          go-format-before-save t
