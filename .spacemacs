@@ -448,6 +448,7 @@ you should place your code here."
   (with-eval-after-load 'lsp-metals
     (setq lsp-log-io t))
   (with-eval-after-load 'ruby-mode
+    (setq ruby-test-runner 'rspec)
     (setq lsp-disabled-clients '(rubocop-ls-tramp))
     (setq lsp-ruby-lsp-use-bundler t)))
 
