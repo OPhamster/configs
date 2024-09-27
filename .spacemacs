@@ -204,8 +204,6 @@ values."
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab t
-   ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ t
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
@@ -376,6 +374,8 @@ you should place your code here."
   (global-company-mode)
   ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
+        flycheck-display-errors-delay 2
+        flycheck-pos-tip-timeout 5
         fancy-battery-show-percentage nil
         imenu-max-item-length 120
         fancy-battery-mode nil
@@ -442,6 +442,8 @@ you should place your code here."
   ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
   ;;                   ruby-forward-sexp nil)))
   (xclip-mode 1)
+  (with-eval-after-load 'evil
+    (setq vim-style-remap-Y-to-y$ t))
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
   (with-eval-after-load 'lsp-metals
