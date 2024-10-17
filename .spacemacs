@@ -62,16 +62,14 @@ values."
      lsp
      markdown
      multiple-cursors
-     (org :variables
-          org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "DONE"))
-          org-agenda-files '("~/org"))
+     org
      protobuf
      (python :variables
              python-backend 'lsp)
      puppet
      (ruby :variables
            ruby-backend 'lsp
-           ruby-insert-encoding-magic-comment nil
+           ruby-insert-encoding-magic-comment t
            ruby-version-manager 'rvm)
      rust
      (scala :variables
@@ -88,8 +86,7 @@ values."
                       syntax-checking-enable-by-default t)
      systemd
      terraform
-     (treemacs :variables
-               treemacs-use-filewatch-mode t)
+     treemacs
      typescript
      vimscript
      yaml
@@ -197,6 +194,8 @@ values."
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   ;; the config below is deprecated and has been moved to 'evil-want-Y-yank-to-eol
+   ;; vim-style-remap-Y-to-y$ t
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
@@ -372,7 +371,6 @@ you should place your code here."
               (let (org-log-done org-log-states)   ; turn off logging
                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-company-mode)
-  ;; (evil-set-undo-system 'undo-tree)
   (setq flycheck-checker-error-threshold 500
         flycheck-display-errors-delay 2
         flycheck-pos-tip-timeout 5
@@ -442,8 +440,6 @@ you should place your code here."
   ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
   ;;                   ruby-forward-sexp nil)))
   (xclip-mode 1)
-  (with-eval-after-load 'evil
-    (setq vim-style-remap-Y-to-y$ t))
   (with-eval-after-load 'tramp
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
   (with-eval-after-load 'lsp-metals
@@ -480,58 +476,32 @@ This function is called at the very end of Spacemacs initialization."
    ;; If there is more than one, they won't work right.
    '(ansi-color-faces-vector
      [default bold shadow italic underline bold bold-italic bold])
-   '(evil-want-Y-yank-to-eol nil)
+   '(evil-want-Y-yank-to-eol t)
    '(fci-rule-color "#37474f")
-   '(global-column-enforce-mode t)
    '(hl-sexp-background-color "#1c1f26")
    '(ivy-case-fold-search-default nil)
    '(package-selected-packages
-     '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap
-                 aggressive-indent anaconda-mode anzu async auto-compile
-                 auto-complete auto-dictionary auto-highlight-symbol
-                 auto-yasnippet avy bind-key bind-map bundler chruby clang-format
-                 clean-aindent-mode cmake-mode coffee-mode column-enforce-mode
-                 company company-anaconda company-c-headers company-go
-                 company-statistics csv-mode cython-mode dash dash-functional
-                 define-word diminish disaster doom-modeline dumb-jump
-                 elisp-slime-nav epl eval-sexp-fu evil evil-anzu evil-args
-                 evil-ediff evil-escape evil-exchange evil-iedit-state
-                 evil-indent-plus evil-lisp-state evil-magit evil-matchit evil-mc
-                 evil-nerd-commenter evil-numbers evil-search-highlight-persist
-                 evil-surround evil-tutor evil-unimpaired evil-visual-mark-mode
-                 evil-visualstar exec-path-from-shell expand-region eyebrowse f
-                 fancy-battery fill-column-indicator flx flx-ido flycheck
-                 flycheck-pos-tip flyspell-correct flyspell-correct-helm fuzzy
-                 gh-md git-commit git-link git-messenger git-timemachine
-                 gitattributes-mode gitconfig-mode gitignore-mode go-eldoc go-guru
-                 go-mode golden-ratio google-translate goto-chg hcl-mode helm
-                 helm-ag helm-c-yasnippet helm-company helm-core helm-descbinds
-                 helm-flx helm-gitignore helm-make helm-mode-manager
-                 helm-projectile helm-pydoc helm-swoop helm-themes highlight
-                 highlight-indentation highlight-numbers highlight-parentheses
-                 hl-todo hungry-delete hy-mode hydra iedit indent-guide inf-ruby
-                 js-doc js2-mode js2-refactor json-mode json-reformat
-                 json-snatcher link-hint linum-relative live-py-mode livid-mode
-                 lorem-ipsum lv macrostep magit magit-gitflow magit-popup
-                 markdown-mode markdown-toc minitest mmm-mode move-text
-                 multiple-cursors neotree open-junk-file org-bullets
-                 org-plus-contrib orgit packed paradox parent-mode pcre2el
-                 persp-mode pip-requirements pkg-info popup popwin pos-tip
-                 powerline projectile py-isort pyenv-mode pytest pythonic pyvenv
-                 rainbow-delimiters rake rbenv request restart-emacs robe
-                 rspec-mode rubocop ruby-test-mode ruby-tools rvm s simple-httpd
-                 skewer-mode smartparens smeargle spaceline spinner sql-indent
-                 systemd terraform-mode toc-org transient undo-tree use-package
-                 uuidgen vi-tilde-fringe volatile-highlights vterm web-beautify
-                 which-key winum with-editor ws-butler xclip yaml-mode yapfify
-                 yasnippet))
+     '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap aggressive-indent anaconda-mode anzu async auto-compile auto-complete auto-dictionary auto-highlight-symbol auto-yasnippet avy bind-key bind-map bundler chruby clang-format clean-aindent-mode cmake-mode coffee-mode column-enforce-mode company company-anaconda company-c-headers company-go company-statistics csv-mode cython-mode dash dash-functional define-word diminish disaster doom-modeline dumb-jump elisp-slime-nav epl eval-sexp-fu evil evil-anzu evil-args evil-ediff evil-escape evil-exchange evil-iedit-state evil-indent-plus evil-lisp-state evil-magit evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-search-highlight-persist evil-surround evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar exec-path-from-shell expand-region eyebrowse f fancy-battery fill-column-indicator flx flx-ido flycheck flycheck-pos-tip flyspell-correct flyspell-correct-helm fuzzy gh-md git-commit git-link git-messenger git-timemachine gitattributes-mode gitconfig-mode gitignore-mode go-eldoc go-guru go-mode golden-ratio google-translate goto-chg hcl-mode helm helm-ag helm-c-yasnippet helm-company helm-core helm-descbinds helm-flx helm-gitignore helm-make helm-mode-manager helm-projectile helm-pydoc helm-swoop helm-themes highlight highlight-indentation highlight-numbers highlight-parentheses hl-todo hungry-delete hy-mode hydra iedit indent-guide inf-ruby js-doc js2-mode js2-refactor json-mode json-reformat json-snatcher link-hint linum-relative live-py-mode livid-mode lorem-ipsum lv macrostep magit magit-gitflow magit-popup markdown-mode markdown-toc minitest mmm-mode move-text multiple-cursors neotree open-junk-file org-bullets org-plus-contrib orgit packed paradox parent-mode pcre2el persp-mode pip-requirements pkg-info popup popwin pos-tip powerline projectile py-isort pyenv-mode pytest pythonic pyvenv rainbow-delimiters rake rbenv request restart-emacs robe rspec-mode rubocop ruby-test-mode ruby-tools rvm s simple-httpd skewer-mode smartparens smeargle spaceline spinner sql-indent systemd terraform-mode toc-org transient undo-tree use-package uuidgen vi-tilde-fringe volatile-highlights vterm web-beautify which-key winum with-editor ws-butler xclip yaml-mode yapfify yasnippet))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map
-     '((20 . "#f36c60") (40 . "#ff9800") (60 . "#fff59d") (80 . "#8bc34a")
-       (100 . "#81d4fa") (120 . "#4dd0e1") (140 . "#b39ddb") (160 . "#f36c60")
-       (180 . "#ff9800") (200 . "#fff59d") (220 . "#8bc34a") (240 . "#81d4fa")
-       (260 . "#4dd0e1") (280 . "#b39ddb") (300 . "#f36c60") (320 . "#ff9800")
-       (340 . "#fff59d") (360 . "#8bc34a")))
+     '((20 . "#f36c60")
+       (40 . "#ff9800")
+       (60 . "#fff59d")
+       (80 . "#8bc34a")
+       (100 . "#81d4fa")
+       (120 . "#4dd0e1")
+       (140 . "#b39ddb")
+       (160 . "#f36c60")
+       (180 . "#ff9800")
+       (200 . "#fff59d")
+       (220 . "#8bc34a")
+       (240 . "#81d4fa")
+       (260 . "#4dd0e1")
+       (280 . "#b39ddb")
+       (300 . "#f36c60")
+       (320 . "#ff9800")
+       (340 . "#fff59d")
+       (360 . "#8bc34a")))
    '(vc-annotate-very-old-color nil)
    '(vterm-always-compile-module t)
    '(warning-suppress-log-types
