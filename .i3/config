@@ -57,7 +57,8 @@ exec_always --no-startup-id killall clipit && clipit
 exec emacs --daemon
 
 # work @clarisights
-exec --no-startup-id ~/.local/bin/DrSprinto-4.0.7.AppImage
+# no-need for this to spawn, when it's reported I'll manually go and check in
+# exec --no-startup-id ~/.local/bin/DrSprinto-4.0.7.AppImage
 
 
 # exec --no-startup-id kitty --name wtfutil wtfutil
