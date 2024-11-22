@@ -441,6 +441,7 @@ you should place your code here."
   ;;                   ruby-forward-sexp nil)))
   (xclip-mode 1)
   (with-eval-after-load 'tramp
+    (setq tramp-default-user "emacs")
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
   (with-eval-after-load 'lsp-metals
     (setq lsp-log-io t))
@@ -478,6 +479,7 @@ This function is called at the very end of Spacemacs initialization."
      [default bold shadow italic underline bold bold-italic bold])
    '(evil-want-Y-yank-to-eol t)
    '(fci-rule-color "#37474f")
+   '(flycheck-check-syntax-automatically '(save mode-enabled))
    '(hl-sexp-background-color "#1c1f26")
    '(ivy-case-fold-search-default nil)
    '(package-selected-packages
