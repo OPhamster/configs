@@ -399,6 +399,7 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 ######## Window Exclusions
 for_window [all] title_window_icon on
 for_window [all] border pixel 2
+for_window [class="Yad" title="yad-calendar"] floating enable
 
 
 #######################################################################
