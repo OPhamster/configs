@@ -62,6 +62,8 @@ values."
      lsp
      markdown
      multiple-cursors
+     ;; https://www.spacemacs.org/layers/+emacs/org/README.html#important-note
+     ;; don't customize any behavior for `org' here put it in the user-config block
      org
      protobuf
      (python :variables
@@ -366,10 +368,10 @@ you should place your code here."
   ;; BEHAVIOR CHANGES
   (add-hook 'ruby-mode-hook 'yafolding-mode)
   (add-hook 'org-after-todo-statistics-hook
-            (lambda (n-done n-not-done)
-              "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
-              (let (org-log-done org-log-states)   ; turn off logging
-                (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
+             (lambda (n-done n-not-done)
+               "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
+               (let (org-log-done org-log-states)   ; turn off logging
+                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-company-mode)
   (setq flycheck-checker-error-threshold 500
         flycheck-display-errors-delay 2
@@ -440,6 +442,14 @@ you should place your code here."
   ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
   ;;                   ruby-forward-sexp nil)))
   (xclip-mode 1)
+  ;; https://www.spacemacs.org/layers/+emacs/org/README.html#important-note
+  (with-eval-after-load 'org
+    (setq org-agenda-files (file-expand-wildcards "~/todos/*.org"))
+    ;; https://orgmode.org/manual/Template-elements.html
+    ;; https://orgmode.org/manual/Template-expansion.html#Template-expansion-1
+    (setq org-capture-templates
+          '(("t" "Todo for clarisights" entry (file "~/todos/clarisights.org")
+             "* TODO %?\n  %t"))))
   (with-eval-after-load 'tramp
     (setq tramp-default-user "emacs")
     (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
