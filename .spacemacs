@@ -89,6 +89,11 @@ values."
      systemd
      terraform
      treemacs
+     (tree-sitter :variables
+                  spacemacs-tree-sitter-hl-black-list '(js2-mode rjsx-mode)
+                  tree-sitter-syntax-highlight-enable t
+                  tree-sitter-fold-enable t
+                  tree-sitter-fold-indicators-enable nil)
      typescript
      vimscript
      yaml
@@ -368,10 +373,10 @@ you should place your code here."
   ;; BEHAVIOR CHANGES
   (add-hook 'ruby-mode-hook 'yafolding-mode)
   (add-hook 'org-after-todo-statistics-hook
-             (lambda (n-done n-not-done)
-               "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
-               (let (org-log-done org-log-states)   ; turn off logging
-                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
+            (lambda (n-done n-not-done)
+              "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
+              (let (org-log-done org-log-states)   ; turn off logging
+                (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-company-mode)
   (setq flycheck-checker-error-threshold 500
         flycheck-display-errors-delay 2
