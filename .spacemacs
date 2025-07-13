@@ -102,7 +102,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(doom-themes yafolding sqlite3 cmake-mode xclip)
+   dotspacemacs-additional-packages '(doom-themes sqlite3 cmake-mode xclip)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -369,9 +369,7 @@ you should place your code here."
   (spacemacs/declare-prefix "o" "user")
   (spacemacs/set-leader-keys "oc" 'counsel-imenu)
   (spacemacs/set-leader-keys "om" 'mc/mark-next-like-this)
-  (spacemacs/set-leader-keys "of" 'yafolding-toggle-element)
   ;; BEHAVIOR CHANGES
-  (add-hook 'ruby-mode-hook 'yafolding-mode)
   (add-hook 'org-after-todo-statistics-hook
             (lambda (n-done n-not-done)
               "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
