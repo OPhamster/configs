@@ -461,7 +461,7 @@ you should place your code here."
     (setq lsp-log-io t))
   (with-eval-after-load 'ruby-mode
     (setq ruby-test-runner 'rspec)
-    (setq lsp-disabled-clients '(rubocop-ls-tramp sorbet-ls-tramp))
+    (setq lsp-disabled-clients '(rubocop-ls-tramp sorbet-ls-tramp rubocop-ls sorbet-ls))
     (setq lsp-ruby-lsp-use-bundler t)))
 
 ;; Do not write anything past this comment. This is where Emacs will
