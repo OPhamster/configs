@@ -89,11 +89,6 @@ values."
      systemd
      terraform
      treemacs
-     (tree-sitter :variables
-                  spacemacs-tree-sitter-hl-black-list '(js2-mode rjsx-mode)
-                  tree-sitter-syntax-highlight-enable t
-                  tree-sitter-fold-enable t
-                  tree-sitter-fold-indicators-enable nil)
      typescript
      vimscript
      yaml
