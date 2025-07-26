@@ -1,7 +1,7 @@
 [global]
     origin = "top-right"
     frame_width = 1
-    frame_color = "#ffffff"
+    frame_color = "#1ABB9B"
     corner_radius = 7
 
     font = Iosevka Nerd 10
@@ -82,7 +82,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 20
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -139,7 +139,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = "#263238"
+    separator_color = "#1ABB9B"
 
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
