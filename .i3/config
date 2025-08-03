@@ -52,7 +52,7 @@ exec_always --no-startup-id blueman-applet
 # clipboard-manager
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-# copyq requires polybar to be launched
+bindsym $mod+P exec ~/.config/polybar/launch.sh; exec notify-send "Polybar restart"
 exec_always --no-startup-id killall clipit; clipit
 exec emacs --daemon
 
