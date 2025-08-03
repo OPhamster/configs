@@ -372,6 +372,7 @@ you should place your code here."
                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-company-mode)
   (setq flycheck-checker-error-threshold 500
+        lsp-format-buffer-on-save t
         flycheck-display-errors-delay 2
         flycheck-pos-tip-timeout 5
         fancy-battery-show-percentage nil
