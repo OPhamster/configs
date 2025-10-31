@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+DESCRIPTION="Search for term on the browser via the default profile"
+
+exec_search() {
+    coproc ( flatpak run app.zen_browser.zen --search "$@" && exit >/dev/null 2>&1 )
+}
+
+show_help() {
+    echo "Usage: browser_run [-h|t] <search term>"
+    echo "Shows this help section"
+    echo "options:"
+    echo
+    echo "  h  Print this help section"
+}
+
+if [ $# == 0 ]; then
+    # for the `rofi` prompt
+    echo -en "\0message\x1f$DESCRIPTION\n"
+else
+    while getopts "h" option; do
+        case $option in
+            h) show_help && exit
+               ;;
+            \?) echo "Error: Invalid option" && exit 1
+                ;;
+        esac
+    done
+    # for the `rofi` prompt
+    echo -en "\0message\x1f$DESCRIPTION\n"
+    exec_search "$*"
+fi
