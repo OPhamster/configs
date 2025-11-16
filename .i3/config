@@ -69,7 +69,7 @@ exec emacs --daemon
 # assign [class="^kitty$" instance="^wtfutil$"] 8
 
 # lockscreen
-exec --no-startup-id xautolock -time 30 -locker $locker -detectsleep -corners -00-
+exec_always --no-startup-id xautolock -time 10 -locker '$locker' -corners -0+-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker
