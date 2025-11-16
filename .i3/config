@@ -20,7 +20,7 @@ set $terminal kitty
 set $browser flatpak run app.zen_browser.zen
 set $rofim rofi-man
 set $browser_run browser_run
-set $locker i3lock -f -i ~/Pictures/wallpapers/sunset.png
+set $locker i3lock -f -i ~/Pictures/wallpapers/sunset_scaled.png
 # set $locker dm-tool lock
 set $screenshotter ~/scripts/screenshot
 
