@@ -20,7 +20,7 @@ set $terminal kitty
 set $browser flatpak run app.zen_browser.zen
 set $rofim rofi-man
 set $browser_run browser_run
-set $locker i3lock -f -i ~/Pictures/wallpapers/sunset_scaled.png
+set $locker i3lock -t -f -i ~/Pictures/wallpapers/sunset_scaled.png
 # set $locker dm-tool lock
 set $screenshotter ~/scripts/screenshot
 
@@ -69,10 +69,10 @@ exec emacs --daemon
 # assign [class="^kitty$" instance="^wtfutil$"] 8
 
 # lockscreen
-exec_always --no-startup-id xautolock -time 10 -locker '$locker' -corners -0+-
+exec_always --no-startup-id xautolock -time 10 -locker '$locker' -corners -0+- -detectsleep
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker
 
 
 # Use pactl to adjust volume in PulseAudio.
