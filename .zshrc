@@ -21,3 +21,4 @@ fi
 if [[ -e ~/.config/zsh/keybinds.zsh ]]; then
     source ~/.config/zsh/keybinds.zsh
 fi
+setopt interactivecomments
