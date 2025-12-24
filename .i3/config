@@ -405,7 +405,8 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 for_window [all] title_window_icon on
 for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable; focus
-
+for_window [instance="guake"] floating enable
+for_window [instance="guake"] move position 0 0
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
