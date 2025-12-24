@@ -7,8 +7,10 @@ polybar-msg cmd quit
 # killall -q polybar
 
 # Launch bar1 and bar2
-echo "---" | tee -a /tmp/polybar1.log
-polybar top 2>&1 | tee -a /tmp/polybar1.log & disown
-polybar bottom 2>&1 | tee -a /tmp/polybar2.log & disown
+for monitor in $(polybar -M | cut -d ':' -f 1);
+do
+    MONITOR=$monitor polybar top 2>&1 | tee -a /tmp/polybar1-$monitor.log & disown;
+    MONITOR=$monitor polybar bottom 2>&1 | tee -a /tmp/polybar2-$monitor.log & disown;
+done
 
 echo "Bars launched..."
