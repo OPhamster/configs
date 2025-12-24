@@ -48,6 +48,7 @@ exec_always --no-startup-id kdeconnect-indicator
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id guake
 # exec --no-startup-id pa-applet
 
 # clipboard-manager
@@ -368,10 +369,12 @@ set_from_resource	$color12	color12
 set_from_resource	$color13	color13
 set_from_resource	$color14	color14
 set_from_resource	$color15	color15
+set_from_resource	$color16	color16
+set_from_resource	$color17	color17
 
 # Theme colors
 # class                 border  	  backgr. 	 text    	    indic.  	  child_border
-client.focused         	$color14	  $color14	 $background	$color14		$color14
+client.focused         	$color17	  $color17	 $background	$color17		$color17
 client.unfocused       	$background	$background	$foreground	$background	$background
 client.focused_inactive	$foreground	$background	$foreground	$background	$background
 client.urgent		        $foreground	$background	$foreground	$background	$background
@@ -400,7 +403,7 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 
 ######## Window Exclusions
 for_window [all] title_window_icon on
-for_window [all] border pixel 2
+for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable; focus
 
 

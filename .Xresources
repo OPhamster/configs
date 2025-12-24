@@ -54,6 +54,10 @@ XTerm*selectToClipboard: true
 *color7:                          #d8d8d8
 *color15:                         #f8f8f8
 
+!! purple dark/list
+*color 16:                        #8e44ad
+*color 17:                        #9b59b6
+
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
