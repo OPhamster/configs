@@ -532,7 +532,7 @@ This function is called at the very end of Spacemacs initialization."
                  toc-org transient undo-tree use-package uuidgen vi-tilde-fringe
                  volatile-highlights web-beautify which-key winum with-editor
                  ws-butler yaml-mode yapfify yasnippet))
-   '(sqlfmt-options '("- "))
+   '(sqlfmt-options '("-q" "--no-progressbar" "-"))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map
      '((20 . "#f36c60") (40 . "#ff9800") (60 . "#fff59d") (80 . "#8bc34a")
