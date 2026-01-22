@@ -169,13 +169,12 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-dracula spacemacs-dark)
+   dotspacemacs-themes '(spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka Nerd Font"
-                               :size 11
                                :size 13
                                :weight normal
                                :width normal
@@ -370,7 +369,8 @@ you should place your code here."
               "Switch entry to DONE when all subentries are done, to IN-PROGRES otherwise."
               (let (org-log-done org-log-states)   ; turn off logging
                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
-  (global-company-mode)
+  (global-company-mode 1)
+  (show-paren-mode 1)
   (setq flycheck-checker-error-threshold 500
         lsp-format-buffer-on-save t
         flycheck-display-errors-delay 2
@@ -379,9 +379,7 @@ you should place your code here."
         imenu-max-item-length 120
         fancy-battery-mode nil
         kubernetes-poll-frequency 3600
-        kubernetes-redraw-frequency 3600
-        terminal-here-linux-terminal-command 'kitty
-        projectile-fd-executable "fd")
+        kubernetes-redraw-frequency 3600)
   ;; One thing to note - `projectile` should be
   ;; As of writing this doc - it seems that `projectile-find-file'
   ;; depends entirely on the `projectile-generic-command' which
