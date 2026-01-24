@@ -176,9 +176,9 @@ bindsym $mod+v split v; exec notify-send 'split-horizontally'
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking; exec notify-send 'stacking layout'
+bindsym $mod+w layout tabbed; exec notify-send 'tabbed layout'
+bindsym $mod+e layout toggle split; exec notify 'split layout'
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -190,7 +190,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+z focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -293,6 +293,7 @@ mode "$resize_system" {
         bindsym $mod+r mode "default"
         bindsym Ctrl+g mode "default"
 }
+
 
 # Set workspace movement mode
 bindsym $mod+i mode "$move_workspace"
