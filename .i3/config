@@ -48,7 +48,12 @@ exec_always --no-startup-id kdeconnect-indicator
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec_always --no-startup-id blueman-applet
-exec_always --no-startup-id guake
+# We're doing this as a replacement for guake. Look at the window rules
+# for kitty for more info
+# TODO: categorize and organize the code better, maybe all the details related
+# to an application are better placed together, instead of going in the order of
+# startup
+exec_always --no-startup-id $terminal
 # exec --no-startup-id pa-applet
 
 # clipboard-manager
@@ -197,7 +202,9 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# Refer to `man pcresyntax` to understand regex systax
+bindsym $mod+minus [class="[^kitty]"] scratchpad show
+bindsym F12 [class="kitty"] scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -406,8 +413,10 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 for_window [all] title_window_icon on
 for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable; focus
-for_window [instance="guake"] floating enable
-for_window [instance="guake"] move position 0 0
+# we're doing this below as an alternative to guake
+for_window [class="kitty"] focus; move scratchpad
+# for_window [instance="guake"] floating enable
+# for_window [instance="guake"] move position 0 0
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
