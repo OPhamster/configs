@@ -412,7 +412,7 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 ######## Window Exclusions
 for_window [all] title_window_icon on
 for_window [all] border pixel 5
-for_window [class="Yad" title="yad-calendar"] floating enable; focus
+for_window [class="Yad" title="yad-calendar"] floating enable, focus
 # we're doing this below as an alternative to guake
 for_window [class="kitty"] focus; move scratchpad
 # for_window [instance="guake"] floating enable
