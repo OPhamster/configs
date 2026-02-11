@@ -218,9 +218,9 @@ set $ws7 "7"
 set $ws8 "8"
 
 # gaps
-gaps inner 5
-gaps outer 1
-gaps bottom 0
+gaps inner 10
+gaps outer 10
+gaps bottom 10
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -413,8 +413,9 @@ client.placeholder	    $foreground	$background	$foreground	$background	$backgrou
 for_window [all] title_window_icon on
 for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable, focus
+for_window [class="Nitrogen"] floating enable, focus
 # we're doing this below as an alternative to guake
-for_window [class="kitty"] focus; move scratchpad
+for_window [class="kitty"] focus, move scratchpad
 # for_window [instance="guake"] floating enable
 # for_window [instance="guake"] move position 0 0
 
