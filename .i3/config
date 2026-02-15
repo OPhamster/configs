@@ -53,7 +53,7 @@ exec_always --no-startup-id blueman-applet
 # TODO: categorize and organize the code better, maybe all the details related
 # to an application are better placed together, instead of going in the order of
 # startup
-exec_always --no-startup-id $terminal
+exec_always --no-startup-id $terminal --class 'scratch-kitty'
 # exec --no-startup-id pa-applet
 
 # clipboard-manager
@@ -203,8 +203,9 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 # Refer to `man pcresyntax` to understand regex systax
-bindsym $mod+minus [class="[^kitty]"] scratchpad show
-bindsym F12 [class="kitty"] scratchpad show
+# https://regex101.com/ to test your pcre expressions
+bindsym $mod+minus [class="^(?!scratch-kitty).*"] scratchpad show
+bindsym F12 [class="scratch-kitty"] scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -415,7 +416,7 @@ for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable, focus
 for_window [class="Nitrogen"] floating enable, focus
 # we're doing this below as an alternative to guake
-for_window [class="kitty"] focus, move scratchpad
+for_window [class="scratch-kitty"] focus, move scratchpad
 # for_window [instance="guake"] floating enable
 # for_window [instance="guake"] move position 0 0
 
