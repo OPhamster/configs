@@ -420,6 +420,10 @@ for_window [class="scratch-kitty"] focus, move scratchpad
 # for_window [instance="guake"] floating enable
 # for_window [instance="guake"] move position 0 0
 
+# window-workspace rules
+assign [class="Spotify"] 4
+assign [class="Zulip"] 3
+
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
 # keysym-based config which used their favorite modifier (alt or windows)
