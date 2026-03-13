@@ -54,6 +54,7 @@ exec_always --no-startup-id blueman-applet
 # to an application are better placed together, instead of going in the order of
 # startup
 exec_always --no-startup-id $terminal --class 'scratch-kitty'
+exec_always --no-startup-id flatpak run org.zealdocs.Zeal
 # exec --no-startup-id pa-applet
 
 # clipboard-manager
@@ -197,6 +198,9 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+# don't shift focus
+no_focus [window_role="__focused__"]
+
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
@@ -204,8 +208,9 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 # Refer to `man pcresyntax` to understand regex systax
 # https://regex101.com/ to test your pcre expressions
-bindsym $mod+minus [class="^(?!scratch-kitty).*"] scratchpad show
+bindsym $mod+minus [class="^(?!scratch-kitty)(?!Zeal).*"] scratchpad show
 bindsym F12 [class="scratch-kitty"] scratchpad show
+bindsym F9 [class="Zeal"] scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -417,6 +422,7 @@ for_window [class="Yad" title="yad-calendar"] floating enable, focus
 for_window [class="Nitrogen"] floating enable, focus
 # we're doing this below as an alternative to guake
 for_window [class="scratch-kitty"] focus, move scratchpad
+for_window [class="Zeal"] focus, move scratchpad
 # for_window [instance="guake"] floating enable
 # for_window [instance="guake"] move position 0 0
 
