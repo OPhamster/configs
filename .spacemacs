@@ -98,7 +98,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(doom-themes sqlite3 cmake-mode xclip)
+   dotspacemacs-additional-packages '(doom-themes sqlite3 cmake-mode xclip all-the-icons)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -440,6 +440,7 @@ you should place your code here."
   ;;                   ,(rx (or "#" "=begin"))                        ; Comment start
   ;;                   ruby-forward-sexp nil)))
   (xclip-mode 1)
+  (require 'all-the-icons)
   ;; https://www.spacemacs.org/layers/+emacs/org/README.html#important-note
   (with-eval-after-load 'org
     (setq org-agenda-files (file-expand-wildcards "~/todos/*.org"))
@@ -492,45 +493,48 @@ This function is called at the very end of Spacemacs initialization."
    '(flycheck-check-syntax-automatically '(save mode-enabled))
    '(hl-sexp-background-color "#1c1f26")
    '(ivy-case-fold-search-default nil)
+   '(org-agenda-files nil)
    '(package-selected-packages
      '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap
-                 aggressive-indent anaconda-mode anzu async auto-compile
-                 auto-complete auto-dictionary auto-highlight-symbol
-                 auto-yasnippet avy bind-key bind-map bundler chruby clang-format
-                 clean-aindent-mode cmake-mode coffee-mode column-enforce-mode
-                 company company-anaconda company-c-headers company-go
-                 company-statistics csv-mode cython-mode dash dash-functional
-                 define-word diminish disaster dumb-jump elisp-slime-nav epl
-                 eval-sexp-fu evil evil-anzu evil-args evil-ediff evil-escape
-                 evil-exchange evil-iedit-state evil-indent-plus evil-lisp-state
-                 evil-magit evil-matchit evil-mc evil-nerd-commenter evil-numbers
-                 evil-search-highlight-persist evil-surround evil-tutor
-                 evil-unimpaired evil-visual-mark-mode evil-visualstar
-                 exec-path-from-shell expand-region eyebrowse f fancy-battery
-                 fill-column-indicator flx flx-ido flycheck flycheck-pos-tip
-                 flyspell-correct flyspell-correct-helm fuzzy gh-md git-commit
-                 git-link git-messenger git-timemachine gitattributes-mode
-                 gitconfig-mode gitignore-mode go-eldoc go-guru go-mode
-                 golden-ratio google-translate goto-chg hcl-mode helm helm-ag
-                 helm-c-yasnippet helm-company helm-core helm-descbinds helm-flx
-                 helm-gitignore helm-make helm-mode-manager helm-projectile
-                 helm-pydoc helm-swoop helm-themes highlight highlight-indentation
-                 highlight-numbers highlight-parentheses hl-todo hungry-delete
-                 hy-mode hydra iedit indent-guide inf-ruby js-doc js2-mode
-                 js2-refactor json-mode json-reformat json-snatcher link-hint
-                 linum-relative live-py-mode livid-mode lorem-ipsum lv macrostep
-                 magit magit-gitflow magit-popup markdown-mode markdown-toc
-                 minitest mmm-mode move-text multiple-cursors neotree
-                 open-junk-file org-bullets org-plus-contrib orgit packed paradox
-                 parent-mode pcre2el persp-mode pip-requirements pkg-info popup
-                 popwin pos-tip powerline projectile py-isort pyenv-mode pytest
-                 pythonic pyvenv rainbow-delimiters rake rbenv request
-                 restart-emacs robe rspec-mode rubocop ruby-test-mode ruby-tools
-                 rvm s seeing-is-believing simple-httpd skewer-mode smartparens
-                 smeargle spaceline spinner sql-indent systemd terraform-mode
-                 toc-org transient undo-tree use-package uuidgen vi-tilde-fringe
-                 volatile-highlights web-beautify which-key winum with-editor
-                 ws-butler yaml-mode yapfify yasnippet))
+                 aggressive-indent all-the-icons-nerd-fonts anaconda-mode anzu
+                 async auto-compile auto-complete auto-dictionary
+                 auto-highlight-symbol auto-yasnippet avy bind-key bind-map
+                 bundler chruby clang-format clean-aindent-mode cmake-mode
+                 coffee-mode column-enforce-mode company company-anaconda
+                 company-c-headers company-go company-statistics
+                 compile-multi-all-the-icons csv-mode cython-mode dash
+                 dash-functional define-word diminish disaster dumb-jump
+                 elisp-slime-nav epl eval-sexp-fu evil evil-anzu evil-args
+                 evil-ediff evil-escape evil-exchange evil-iedit-state
+                 evil-indent-plus evil-lisp-state evil-magit evil-matchit evil-mc
+                 evil-nerd-commenter evil-numbers evil-search-highlight-persist
+                 evil-surround evil-tutor evil-unimpaired evil-visual-mark-mode
+                 evil-visualstar exec-path-from-shell expand-region eyebrowse f
+                 fancy-battery fill-column-indicator flx flx-ido flycheck
+                 flycheck-pos-tip flyspell-correct flyspell-correct-helm fuzzy
+                 gh-md git-commit git-link git-messenger git-timemachine
+                 gitattributes-mode gitconfig-mode gitignore-mode go-eldoc go-guru
+                 go-mode golden-ratio google-translate goto-chg hcl-mode helm
+                 helm-ag helm-c-yasnippet helm-company helm-core helm-descbinds
+                 helm-flx helm-gitignore helm-make helm-mode-manager
+                 helm-projectile helm-pydoc helm-swoop helm-themes highlight
+                 highlight-indentation highlight-numbers highlight-parentheses
+                 hl-todo hungry-delete hy-mode hydra iedit indent-guide inf-ruby
+                 js-doc js2-mode js2-refactor json-mode json-reformat
+                 json-snatcher link-hint linum-relative live-py-mode livid-mode
+                 lorem-ipsum lv macrostep magit magit-gitflow magit-popup
+                 markdown-mode markdown-toc minitest mmm-mode move-text
+                 multiple-cursors neotree open-junk-file org-bullets
+                 org-plus-contrib orgit packed paradox parent-mode pcre2el
+                 persp-mode pip-requirements pkg-info popup popwin pos-tip
+                 powerline projectile py-isort pyenv-mode pytest pythonic pyvenv
+                 rainbow-delimiters rake rbenv request restart-emacs robe
+                 rspec-mode rubocop ruby-test-mode ruby-tools rvm s
+                 seeing-is-believing simple-httpd skewer-mode smartparens smeargle
+                 spaceline spaceline-all-the-icons spinner sql-indent systemd
+                 terraform-mode toc-org transient undo-tree use-package uuidgen
+                 vi-tilde-fringe volatile-highlights web-beautify which-key winum
+                 with-editor ws-butler yaml-mode yapfify yasnippet))
    '(sqlfmt-options '("-q" "--no-progressbar" "-"))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map
