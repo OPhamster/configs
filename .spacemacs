@@ -40,7 +40,8 @@ values."
                       auto-completion-enable-help-tooltip t)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
-     (clojure :variables clojure-backend 'cider)
+     (clojure :variables clojure-backend 'lsp
+              cider-clojure-cli-aliases ":dev")
      csv
      dap
      (docker :variables
