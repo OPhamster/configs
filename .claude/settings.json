@@ -1,0 +1,10 @@
+{
+    "statusLine": {
+        "type": "command",
+        "command": "~/scripts/claude_statusline.sh",
+        "padding": 2
+    },
+    "enabledPlugins": {
+        "superpowers@claude-plugins-official": true
+    }
+}
