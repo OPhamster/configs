@@ -1,0 +1,11 @@
+font-family = "IosevkaTerm Nerd Font Mono"
+font-size = 11
+shell-integration-features = no-cursor
+shell-integration = bash
+cursor-style = block
+background-blur = true
+background-opacity = 0.85
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = notify
+window-decoration = none
+scrollback-limit = 1000000000
