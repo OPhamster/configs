@@ -78,9 +78,8 @@ values."
      (scala :variables
             scala-sbt-window-position 'bottom
             scala-auto-insert-asterisk-in-comments t)
-     (shell :variables shell-default-shell 'vterm
+     (shell :variables shell-default-shell 'ghostel
             shell-default-term-shell "/bin/bash"
-            spacemacs-vterm-history-file-location "~/.bash_history"
             close-window-with-terminal t)
      (spell-checking :variables spell-checking-enable-by-default t)
      sql
@@ -98,7 +97,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(doom-themes sqlite3 cmake-mode xclip all-the-icons)
+   dotspacemacs-additional-packages '(doom-themes sqlite3 cmake-mode xclip all-the-icons cloak-mode ghostel evil-ghostel)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -372,6 +371,7 @@ you should place your code here."
                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-company-mode 1)
   (show-paren-mode 1)
+  (make-shell-pop-command "ghostel" ghostel)
   (setq flycheck-checker-error-threshold 500
         lsp-format-buffer-on-save t
         flycheck-display-errors-delay 2
@@ -496,23 +496,22 @@ This function is called at the very end of Spacemacs initialization."
    '(org-agenda-files nil)
    '(package-selected-packages
      '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap
-                 aggressive-indent all-the-icons-nerd-fonts anaconda-mode anzu
-                 async auto-compile auto-complete auto-dictionary
-                 auto-highlight-symbol auto-yasnippet avy bind-key bind-map
-                 bundler chruby clang-format clean-aindent-mode cmake-mode
-                 coffee-mode column-enforce-mode company company-anaconda
-                 company-c-headers company-go company-statistics
-                 compile-multi-all-the-icons csv-mode cython-mode dash
-                 dash-functional define-word diminish disaster dumb-jump
-                 elisp-slime-nav epl eval-sexp-fu evil evil-anzu evil-args
-                 evil-ediff evil-escape evil-exchange evil-iedit-state
-                 evil-indent-plus evil-lisp-state evil-magit evil-matchit evil-mc
+                 aggressive-indent anaconda-mode anzu async auto-compile
+                 auto-complete auto-dictionary auto-highlight-symbol
+                 auto-yasnippet avy bind-key bind-map bundler chruby clang-format
+                 clean-aindent-mode cmake-mode coffee-mode column-enforce-mode
+                 company company-anaconda company-c-headers company-go
+                 company-statistics csv-mode cython-mode dash dash-functional
+                 define-word diminish disaster dumb-jump elisp-slime-nav epl
+                 eval-sexp-fu evil evil-anzu evil-args evil-ediff evil-escape
+                 evil-exchange evil-ghostel evil-iedit-state evil-indent-plus
+                 evil-lisp-state evil-magit evil-matchit evil-mc
                  evil-nerd-commenter evil-numbers evil-search-highlight-persist
                  evil-surround evil-tutor evil-unimpaired evil-visual-mark-mode
                  evil-visualstar exec-path-from-shell expand-region eyebrowse f
                  fancy-battery fill-column-indicator flx flx-ido flycheck
                  flycheck-pos-tip flyspell-correct flyspell-correct-helm fuzzy
-                 gh-md git-commit git-link git-messenger git-timemachine
+                 gh-md ghostel git-commit git-link git-messenger git-timemachine
                  gitattributes-mode gitconfig-mode gitignore-mode go-eldoc go-guru
                  go-mode golden-ratio google-translate goto-chg hcl-mode helm
                  helm-ag helm-c-yasnippet helm-company helm-core helm-descbinds
@@ -544,7 +543,7 @@ This function is called at the very end of Spacemacs initialization."
        (260 . "#4dd0e1") (280 . "#b39ddb") (300 . "#f36c60") (320 . "#ff9800")
        (340 . "#fff59d") (360 . "#8bc34a")))
    '(vc-annotate-very-old-color nil)
-   '(vterm-always-compile-module t)
+   '(vterm-always-compile-module nil)
    '(warning-suppress-log-types
      '(((defvaralias losing-value ac-user-dictionary-files))
        ((defvaralias losing-value ac-user-dictionary-files))
