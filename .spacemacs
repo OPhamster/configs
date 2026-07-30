@@ -40,8 +40,7 @@ values."
                       auto-completion-enable-help-tooltip t)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
-     (clojure :variables clojure-backend 'lsp
-              cider-clojure-cli-aliases ":dev")
+     (clojure :variables clojure-backend 'lsp)
      csv
      dap
      (docker :variables
@@ -90,6 +89,7 @@ values."
      terraform
      treemacs
      typescript
+     unicode-fonts
      vimscript
      yaml
      )
@@ -370,6 +370,11 @@ you should place your code here."
               (let (org-log-done org-log-states)   ; turn off logging
                 (org-todo (if (= n-not-done 0) "DONE" "IN-PROGRESS")))))
   (global-company-mode 1)
+  (global-emojify-mode 1)
+  (global-cloak-mode 1)
+  (add-to-list 'cloak-mode-patterns '(edn-mode . ":.*[ \t]+\\(.+\\)$"))
+  (add-to-list 'cloak-mode-patterns '(dotenv-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
+  (add-to-list 'cloak-mode-patterns '(toml-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
   (show-paren-mode 1)
   (make-shell-pop-command "ghostel" ghostel)
   (setq flycheck-checker-error-threshold 500
@@ -528,12 +533,11 @@ This function is called at the very end of Spacemacs initialization."
                  persp-mode pip-requirements pkg-info popup popwin pos-tip
                  powerline projectile py-isort pyenv-mode pytest pythonic pyvenv
                  rainbow-delimiters rake rbenv request restart-emacs robe
-                 rspec-mode rubocop ruby-test-mode ruby-tools rvm s
-                 seeing-is-believing simple-httpd skewer-mode smartparens smeargle
-                 spaceline spaceline-all-the-icons spinner sql-indent systemd
-                 terraform-mode toc-org transient undo-tree use-package uuidgen
-                 vi-tilde-fringe volatile-highlights web-beautify which-key winum
-                 with-editor ws-butler yaml-mode yapfify yasnippet))
+                 rspec-mode rubocop ruby-test-mode ruby-tools rvm s simple-httpd
+                 skewer-mode smartparens smeargle spaceline spinner sql-indent
+                 systemd terraform-mode toc-org transient undo-tree use-package
+                 uuidgen vi-tilde-fringe volatile-highlights web-beautify
+                 which-key winum with-editor ws-butler yaml-mode yapfify yasnippet))
    '(sqlfmt-options '("-q" "--no-progressbar" "-"))
    '(vc-annotate-background nil)
    '(vc-annotate-color-map
@@ -550,7 +554,7 @@ This function is called at the very end of Spacemacs initialization."
        ((defvaralias losing-value ac-user-dictionary-files))
        ((defvaralias losing-value ac-user-dictionary-files))))
    '(warning-suppress-types
-     '(((defvaralias losing-value ac-user-dictionary-files))
+     '((org-babel) ((defvaralias losing-value ac-user-dictionary-files))
        ((defvaralias losing-value ac-user-dictionary-files))
        ((defvaralias losing-value ac-user-dictionary-files))
        ((defvaralias losing-value ac-user-dictionary-files))
