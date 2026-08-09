@@ -463,7 +463,9 @@ you should place your code here."
   (with-eval-after-load 'ruby-mode
     (setq ruby-test-runner 'rspec)
     (setq lsp-disabled-clients '(rubocop-ls-tramp sorbet-ls-tramp rubocop-ls sorbet-ls))
-    (setq lsp-ruby-lsp-use-bundler t)))
+    (setq lsp-ruby-lsp-use-bundler t))
+  (with-eval-after-load 'popwin
+    (push '("*cider-test-report*" :height 0.3 :stick t :dedicated t) popwin:special-display-config)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
