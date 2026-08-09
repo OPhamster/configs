@@ -109,6 +109,7 @@
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
     sticky_history = no
+    timeout = 5
 
     # Maximum amount of notifications kept in history
     history_length = 20
@@ -150,10 +151,10 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = firefox
+    browser = flatpak run app.zen_browser.zen
 
     # Align icons left/right/off
-    icon_position = right
+    icon_position = left
 
     # Paths to default icons.
     # icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
