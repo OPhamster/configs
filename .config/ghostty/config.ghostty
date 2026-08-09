@@ -9,5 +9,6 @@ notify-on-command-finish = unfocused
 notify-on-command-finish-action = notify
 window-decoration = none
 scrollback-limit = 1000000000
+theme = Dracula
 
 config-file = keybinds.ghostty

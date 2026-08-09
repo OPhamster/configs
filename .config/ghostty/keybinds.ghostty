@@ -47,7 +47,6 @@ keybind = super+ctrl+shift+arrow_right=resize_split:right,10
 keybind = ctrl+shift+page_up=jump_to_prompt:-1
 keybind = ctrl+shift+page_down=jump_to_prompt:1
 keybind = ctrl+shift+f=start_search
-keybind = escape=end_search
 keybind = ctrl+shift+i=inspector:toggle
 keybind = ctrl+shift+a=select_all
 keybind = alt+digit_1=goto_tab:1
