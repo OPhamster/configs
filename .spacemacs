@@ -304,7 +304,6 @@ values."
    dotspacemacs-line-numbers '(:relative t
                                          :disabled-for-modes dired-mode
                                          doc-view-mode
-                                         markdown-mode
                                          pdf-view-mode
                                          :size-limit-kb 1000)
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -312,7 +311,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -377,6 +376,8 @@ you should place your code here."
   (add-to-list 'cloak-mode-patterns '(toml-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
   (show-paren-mode 1)
   (make-shell-pop-command "ghostel" ghostel)
+  (setq dotspacemacs-frame-title-format "%t@%S")
+  (setq projectile-enable-caching t) ;; session level caching ONLY - i.e the projectile action on a project is expensive
   (setq flycheck-checker-error-threshold 500
         lsp-format-buffer-on-save t
         flycheck-display-errors-delay 2
