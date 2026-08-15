@@ -371,6 +371,7 @@ you should place your code here."
   (global-company-mode 1)
   (global-emojify-mode 1)
   (global-cloak-mode 1)
+  (golden-ratio-mode 1)
   (add-to-list 'cloak-mode-patterns '(edn-mode . ":.*[ \t]+\\(.+\\)$"))
   (add-to-list 'cloak-mode-patterns '(dotenv-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
   (add-to-list 'cloak-mode-patterns '(toml-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
