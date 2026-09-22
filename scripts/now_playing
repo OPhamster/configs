@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function now_playing() {
+    playerctl -s -f "[{{playerName}}]: {{status}} | {{title}} <by> {{artist}}" metadata
+}
+
+function player_present() {
+    playerctl status -s > /dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        true
+    else
+        false
+    fi
+}
+
+if $(player_present); then
+    now_playing
+fi
