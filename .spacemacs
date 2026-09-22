@@ -40,7 +40,8 @@ values."
                       auto-completion-enable-help-tooltip t)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
-     (clojure :variables clojure-backend 'lsp)
+     (clojure :variables clojure-backend 'lsp
+              clojure-enable-linters 'clj-kondo)
      csv
      dap
      (docker :variables
@@ -372,7 +373,18 @@ you should place your code here."
   (global-emojify-mode 1)
   (global-cloak-mode 1)
   (golden-ratio-mode 1)
-  (add-to-list 'cloak-mode-patterns '(edn-mode . ":.*[ \t]+\\(.+\\)$"))
+  ;; currently cloak-mode-patterns only supports one capture group
+  ;; so to express the following
+  ;; ":(user|username|password|pass)[ \t]+\\(.+\\)$"
+  ;;we need to express it like below
+  (add-to-list 'cloak-mode-patterns '(edn-mode . (":user[ \t]+\\(\\w\\)"
+                                                  ":user[ \t]+\\(\"\\w+\"\\)"
+                                                  ":username[ \t]+\\(\\w\\)"
+                                                  ":username[ \t]+\\(\"\\w+\"\\)"
+                                                  ":password[ \t]+\\(\\w\\)"
+                                                  ":password[ \t]+\\(\"\\w+\"\\)"
+                                                  ":pass[ \t]+\\(\\w\\)"
+                                                  ":pass[ \t]+\\(\"\\w+\"\\)")))
   (add-to-list 'cloak-mode-patterns '(dotenv-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
   (add-to-list 'cloak-mode-patterns '(toml-mode . "[a-zA-Z0-9_]+[ \t]*=[ \t]*\\(.*+\\)$"))
   (show-paren-mode 1)
@@ -513,14 +525,14 @@ This function is called at the very end of Spacemacs initialization."
                  company-statistics csv-mode cython-mode dash dash-functional
                  define-word diminish disaster dumb-jump elisp-slime-nav epl
                  eval-sexp-fu evil evil-anzu evil-args evil-ediff evil-escape
-                 evil-exchange evil-ghostel evil-iedit-state evil-indent-plus
-                 evil-lisp-state evil-magit evil-matchit evil-mc
-                 evil-nerd-commenter evil-numbers evil-search-highlight-persist
-                 evil-surround evil-tutor evil-unimpaired evil-visual-mark-mode
-                 evil-visualstar exec-path-from-shell expand-region eyebrowse f
-                 fancy-battery fill-column-indicator flx flx-ido flycheck
+                 evil-exchange evil-iedit-state evil-indent-plus evil-lisp-state
+                 evil-magit evil-matchit evil-mc evil-nerd-commenter evil-numbers
+                 evil-search-highlight-persist evil-surround evil-tutor
+                 evil-unimpaired evil-visual-mark-mode evil-visualstar
+                 exec-path-from-shell expand-region eyebrowse f fancy-battery
+                 fill-column-indicator flx flx-ido flycheck flycheck-clj-kondo
                  flycheck-pos-tip flyspell-correct flyspell-correct-helm fuzzy
-                 gh-md ghostel git-commit git-link git-messenger git-timemachine
+                 gh-md git-commit git-link git-messenger git-timemachine
                  gitattributes-mode gitconfig-mode gitignore-mode go-eldoc go-guru
                  go-mode golden-ratio google-translate goto-chg hcl-mode helm
                  helm-ag helm-c-yasnippet helm-company helm-core helm-descbinds
