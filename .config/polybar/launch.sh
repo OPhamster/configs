@@ -11,7 +11,8 @@ killall -q polybar
 # Launch bar1 and bar2
 for monitor in $(polybar -M | cut -d ':' -f 1);
 do
-    MONITOR=$monitor polybar top 2>&1 | tee -a /tmp/polybar1-$monitor.log & disown;
+    MONITOR=$monitor polybar top-left 2>&1 | tee -a /tmp/polybar1left-$monitor.log & disown;
+    MONITOR=$monitor polybar top-right 2>&1 | tee -a /tmp/polybar1right-$monitor.log & disown;
     MONITOR=$monitor polybar bottom 2>&1 | tee -a /tmp/polybar2-$monitor.log & disown;
 done
 
