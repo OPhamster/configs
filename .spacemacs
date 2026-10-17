@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((shell-scripts :variables
+   '(nginx
+     (shell-scripts :variables
                     shell-scripts-format-on-save t
                     shell-scripts-backend nil)
      ansible
