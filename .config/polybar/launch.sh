@@ -13,6 +13,7 @@ for monitor in $(polybar -M | cut -d ':' -f 1);
 do
     MONITOR=$monitor polybar top-left 2>&1 | tee -a /tmp/polybar1left-$monitor.log & disown;
     MONITOR=$monitor polybar top-right 2>&1 | tee -a /tmp/polybar1right-$monitor.log & disown;
+    MONITOR=$monitor polybar top-center 2>&1 | tee -a /tmp/polybar1center-$monitor.log & disown;
     MONITOR=$monitor polybar bottom 2>&1 | tee -a /tmp/polybar2-$monitor.log & disown;
 done
 

@@ -107,7 +107,11 @@ bindsym $mod+Ctrl+F3 exec pcmanfm
 # releases and less stupid that the `snap` equivalent, for whatever reason
 # wasn't letting me login. Symptoms similar to https://www.reddit.com/r/flatpak/comments/13p7ldf/spotify_wants_to_open_a_browser_tab_but_wont/
 # but the same reason.
-bindsym $mod+F4 exec flatpak run com.spotify.Client
+
+# Spotify isn't working on flatpak, login doesn't seem to work
+# bindsym $mod+F4 exec flatpak run com.spotify.Client
+# spotify defaults to pipewire, swap to pulseaudio
+bindsym $mod+F4 exec ~/Downloads/bin/Spotify-stable-1.2.95.453.g0eeebbed-x86_64.AppImage --audio-api=pulseaudio
 bindsym $mod+F5 exec gimp
 bindsym $mod+t exec --no-startup-id pkill picom; exec notify-send 'killed picom'
 bindsym $mod+Ctrl+t exec --no-startup-id $picom
@@ -153,6 +157,7 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+focus_follows_mouse no
 mouse_warping output
 
 # alternatively, you can use the cursor keys:
@@ -424,14 +429,14 @@ for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable, focus
 for_window [class="Nitrogen"] floating enable, focus
 # we're doing this below as an alternative to guake
-for_window [class="scratch-ghostty"] focus, move scratchpad
+# for_window [class="scratch-ghostty"] focus, move scratchpad
 for_window [class="Zeal"] focus, move scratchpad
 # for_window [instance="guake"] floating enable
 # for_window [instance="guake"] move position 0 0
 
 # window-workspace rules
 assign [class="Spotify"] 4
-assign [class="Zulip"] 3
+assign [class="zulip"] 3
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
