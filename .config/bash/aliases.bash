@@ -27,14 +27,5 @@ fi
 
 alias convert=magick
 
-commando() {
-  if [[ "$?" == "0" ]]; then
-    # green
-    echo -e '\e[32m✓\e[0m '
-  else
-    # red
-    echo -e '\e[31m✝\e[0m '
-  fi
-}
-
-PS1='$(commando)'"$PS1"
+# work aliases
+alias emacs-labs='ssh emacs@labs.lxd -f emacs'
