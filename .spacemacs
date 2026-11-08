@@ -175,7 +175,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark)
+   dotspacemacs-themes '(gruvbox)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -343,6 +343,9 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup 'trailing
+   ;; Instead of killing the scratch buffer, it's hidden, so scratch buffer
+   ;; is never lost
+   dotspacemacs-scratch-buffer-unkillable t
    ))
 
 (defun dotspacemacs/user-init ()

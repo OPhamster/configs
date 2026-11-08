@@ -1,7 +1,7 @@
 [global]
-    origin = "top-right"
+    origin = "bottom-right"
     frame_width = 3
-    frame_color = "#1ABB9B"
+    frame_color = "#89b482"
     corner_radius = 10
     font = Iosevka Nerd 10
 

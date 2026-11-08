@@ -66,6 +66,5 @@ keybind = alt+7=goto_tab:7
 keybind = alt+digit_8=goto_tab:8
 keybind = alt+8=goto_tab:8
 keybind = alt+9=last_tab
-keybind = ctrl+enter=toggle_fullscreen
 keybind = ctrl+shift+enter=toggle_split_zoom
 keybind = ctrl+shift+p=toggle_command_palette

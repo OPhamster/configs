@@ -9,7 +9,7 @@ fi
 
 type -p $BAT > /dev/null
 if [[ $? -eq 0 ]]; then
-    export MANROFFOPT="-c" MANPAGER="sh -c 'col -bx | ${BAT} -l man -p --theme Coldark-Dark'"
+    export MANROFFOPT="-c" MANPAGER="sh -c 'col -bx | ${BAT} -l man -p --theme gruvbox-dark'"
     alias cat='${BAT} --paging=never'
     alias catp='${BAT} --paging=always'
 fi

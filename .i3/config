@@ -17,11 +17,10 @@ set $left h
 set $right l
 set $mod Mod4
 set $terminal ghostty
+set $application_launcher "ghostty +new-window --title='Application Launcher' -e fsel --detach"
+set $meta_launcher "ghostty +new-window --title='Application Launcher' -e otter-launcher"
 set $browser firefox
-set $rofim rofi-man
-set $browser_run browser_run
 set $locker i3lock -t -f -i ~/Pictures/wallpapers/sunset_scaled.png
-# set $locker dm-tool lock
 set $screenshotter ~/scripts/screenshot
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -49,8 +48,6 @@ exec_always --no-startup-id kdeconnect-indicator
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec_always --no-startup-id blueman-applet
-# We're doing this as a replacement for guake. Look at the window rules
-# for kitty for more info
 # TODO: categorize and organize the code better, maybe all the details related
 # to an application are better placed together, instead of going in the order of
 # startup
@@ -58,11 +55,12 @@ exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id flatpak run org.zealdocs.Zeal
 # exec --no-startup-id pa-applet
 
-# clipboard-manager
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 bindsym $mod+P exec ~/.config/polybar/launch.sh; exec notify-send "Polybar restart"
-exec_always --no-startup-id killall clipit; clipit
+# clipboard-manager, need to call killall without which the orphan socks and pid files remain behind
+exec_always --no-startup-id killall clipcatd; clipcatd -r
+bindsym Ctrl+Mod1+i exec "ghostty +new-window --title='Clipboard History Launcher' -e clipcat-menu -f=builtin"
 exec emacs --daemon
 
 # work @clarisights
@@ -91,17 +89,16 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Start Applications
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec $terminal --command="direct:/usr/bin/tmux new-session"
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 
 # confirm_os_window_close will ensure that confirmation on window close is not done, to preserve
 # the behavior before this change when running it in an X11 window directly and not in a terminal
 bindsym $mod+F1 exec emacsclient -c -a=''
-bindsym $mod+F2 exec $browser -p personal; exec notify-send 'zen@personal'
-bindsym $mod+Ctrl+F2 exec $browser -p work; exec notify-send 'zen@work'
-# bindsym $mod+F3 exec $terminal --profile ophamster -e ranger
-bindsym $mod+F3 exec $terminal -e yazi
+bindsym $mod+F2 exec $browser -p personal; exec notify-send '$browser@personal'
+bindsym $mod+Ctrl+F2 exec $browser -p work; exec notify-send '$browser@work'
+bindsym $mod+F3 exec $terminal --title="FM Launcher" --shell-integration=bash -e yazi
 bindsym $mod+Ctrl+F3 exec pcmanfm
 # Installed via AUR package manager, flatpak install although inline with the
 # releases and less stupid that the `snap` equivalent, for whatever reason
@@ -118,7 +115,7 @@ bindsym $mod+Ctrl+t exec --no-startup-id $picom
 # bindsym Print --release exec --no-startup-id i3-scrot -s
 bindsym Print --release exec --no-startup-id $screenshotter; exec notify-send 'screenshot'
 # bindsym Ctrl+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+# bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -126,16 +123,10 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# rofi shortcuts
-bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod+b exec --no-startup-id rofi -show brun -modes "brun:$browser_run"
-bindsym $mod+m exec --no-startup-id rofi -show man -modes "man:$rofim" -matching regex -tokenize
-bindsym Mod1+Tab exec --no-startup-id rofi -show window
-# A more modern dmenu replacement is rofi:
-# bindsym $mod+d exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# launcher shortcuts
+bindsym $mod+d exec --no-startup-id $application_launcher
+bindsym $mod+m exec --no-startup-id $meta_launcher
+
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth no
 smart_borders on
@@ -216,20 +207,19 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 # Refer to `man pcresyntax` to understand regex systax
 # https://regex101.com/ to test your pcre expressions
-bindsym $mod+minus [class="^(?!scratch-ghostty)(?!Zeal).*"] scratchpad show
-bindsym F12 [class="scratch-ghostty"] scratchpad show
+bindsym $mod+minus [class="^(?!Zeal).*"] scratchpad show
 bindsym F9 [class="Zeal"] scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
+set $ws1 "1: ❱_"
+set $ws2 "2: ❱_"
+set $ws3 "3: ⇅"
+set $ws4 "4: ▶"
+set $ws5 "5: ●"
+set $ws6 "6: ●"
+set $ws7 "7: ●"
+set $ws8 "8: ●"
 
 # gaps
 gaps inner 10
@@ -237,24 +227,24 @@ gaps outer 10
 gaps bottom 10
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
 
 # move focused container to workspace while maintaining focus
-bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4; workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5; workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6; workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace number $ws8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -372,35 +362,28 @@ mode "$dunst_activities" {
 
 
 # Color
-# Colors set from ~/.Xresources
-set_from_resource	$background	background
-set_from_resource	$foreground	foreground
-set_from_resource	$color0		color0
-set_from_resource $color1 	color1
-set_from_resource $color2 	color2
-set_from_resource $color3 	color3
-set_from_resource $color4 	color4
-set_from_resource $color5 	color5
-set_from_resource $color6		color6
-set_from_resource	$color7		color7
-set_from_resource	$color8		color8
-set_from_resource	$color9		color9
-set_from_resource	$color10	color10
-set_from_resource	$color11	color11
-set_from_resource	$color12	color12
-set_from_resource	$color13	color13
-set_from_resource	$color14	color14
-set_from_resource	$color15	color15
-set_from_resource	$color16	color16
-set_from_resource	$color17	color17
+###############################
+#### Gruvbox Material Dark ####
+###############################
+set $bg       #282828
+set $fg       #d4be98
+set $red      #ea6962
+set $orange   #e78a4e
+set $green    #a9b665
+set $blue     #7daea3
+set $purple   #d3869b
+set $aqua     #89b482
+set $darkgray #282828
+
 
 # Theme colors
-# class                 border  	  backgr. 	 text    	    indic.  	  child_border
-client.focused         	$color17	  $color17	 $foreground	$color17		$color17
-client.unfocused       	$background	$background	$foreground	$background	$background
-client.focused_inactive	$foreground	$background	$foreground	$background	$background
-client.urgent		        $color1	    $background	$foreground	$background	$color9
-client.placeholder	    $foreground	$background	$foreground	$background	$background
+# Gruvbox Theme         brdr        bg          text    indictr     chld_brdr
+client.focused          $orange     $orange     $bg     $orange     $orange
+client.focused_inactive $aqua       $aqua       $bg     $aqua       $aqua
+client.unfocused        $bg         $bg         $bg     $bg         $bg
+client.urgent           $red        $red        $bg     $red        $red
+client.placeholder      $bg         $bg         $bg     $bg         $bg
+client.background       $bg
 
 ###############################################################################
 
@@ -428,15 +411,12 @@ for_window [all] title_window_icon on
 for_window [all] border pixel 5
 for_window [class="Yad" title="yad-calendar"] floating enable, focus
 for_window [class="Nitrogen"] floating enable, focus
-# we're doing this below as an alternative to guake
-# for_window [class="scratch-ghostty"] focus, move scratchpad
+for_window [title=".*Launcher$"] floating enable, focus
 for_window [class="Zeal"] focus, move scratchpad
-# for_window [instance="guake"] floating enable
-# for_window [instance="guake"] move position 0 0
 
 # window-workspace rules
-assign [class="Spotify"] 4
-assign [class="zulip"] 3
+assign [class="Spotify"] $ws4
+assign [class="zulip"] $ws3
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
