@@ -1,0 +1,175 @@
+
+
+#   ██████╗ ████████╗████████╗███████╗██████╗
+#  ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
+#  ██║   ██║   ██║      ██║   █████╗  ██████╔╝█████╗
+#  ██║   ██║   ██║      ██║   ██╔══╝  ██╔══██╗╚════╝
+#  ╚██████╔╝   ██║      ██║   ███████╗██║  ██║
+#   ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
+#  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗
+#  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
+#  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝
+#  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
+#  ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
+#  ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+
+# Terminal shell script launcher, written in rust
+# Source Code: https://github.com/kuokuo123/otter-launcher
+
+# Recommended to be used in companion with fsel or sway-launcher-desktop to launch desktop applications
+
+
+[general]
+height = 30 # the total lines that otter-launcher should occupy; 0 to be fullscreen
+empty_module = "app" # module to run with an empty prompt
+default_module = "ddg" # module to run when no module is matched
+alternative_module = "" # module to run with alt+enter
+control_module = "" # module to run with ctrl+enter
+exec_cmd = "bash -c" # your chosen shell, eg. "zsh -c" for zsh
+vi_mode = false # true for vi keybinds, false emacs keybinds
+cheatsheet_entry = "?" # the key to show configured modules
+cheatsheet_viewer = "less -R; clear" # command to show cheatsheet; through piping stdout
+external_editor = "vim" # ctrl+x ctrl+e (or v in vi normal mode)
+
+
+[interface]
+# options for the layout
+padding = [0, 1, 0, 1] # pad with columns/lines, [top, right, down, left]
+# use three quotes to write longer codes; ANSI color codes and shell expansion are allowed
+header = """
+$(
+load=$(awk 'NR == 1 {print $1"%"}' /proc/loadavg)
+mem=$(free -h | awk 'NR == 2 {print $3}' | sed 's/Gi/0G/')
+
+left="$USER@$HOSTNAME"
+left="> $left"
+right="> $load%  > $mem"
+
+gap=$(( COLUMNS - ${#left} - ${#right} ))
+(( gap < 0 )) && gap=0
+
+printf '\x1b[34;1m> \x1b[0m%s@%s%*s\x1b[31;1m> \x1b[0m%s  \x1b[33;1m> \x1b[0m%s' "$USER" "$HOSTNAME" "$gap" '' "$load" "$mem")"""
+# available [color options](https://docs.rs/ratatui/latest/ratatui/prelude/enum.Color.html)
+header_color = "blue"
+# options for input field
+prompt_sign = "> "
+prompt_sign_color = "blue"
+placeholder = "type & search"
+# options for selectable suggestions
+suggestion_mode = "list" # available options: list, hint
+suggestion_position = "bottom" # to the input field; options: top, bottom
+prefix_color = "yellow"
+prefix_padding = 3 # pad with spaces to have uniformed width
+description_color = "reset"
+selection_prefix = "▌ " # shown for the selected
+selection_prefix_color = "red"
+inverse_selection = true # highlight the selected
+list_prefix = "  " # shown for the not selected
+list_prefix_color = "reset"
+indicator_args = "" # shown for modules taking arguments
+indicator_bare = "" # for those not taking arguments
+indicator_color = "red"
+scrollbar = true
+# options for separator
+separator = true # draw a line between intput field and suggestion list; only affect list mode
+separator_label = "  otter "
+
+
+[image]
+format = "kitty" # graphics protocols to use; options: kitty, sixel, iterm2, symbol
+path = "/home/ophamster/Pictures/memes/my_man_garp_aokiji_dap.png" # path to the image file
+width = 20 # the size of image; count columns for horizontal layout, lines for vertical layout
+position = "top" # image placement; options: left, right, top, bottom
+padding = [0, 0, 0, 0] # [top, right, down, left]
+
+
+# modules are defined as followed
+[[modules]]
+description = "dockduckgo search"
+prefix = "ddg"
+cmd = "xdg-open https://duckduckgo.com/?q={}"
+# if with_argument is true, {} in cmd will be replaced with user input. if not explicitly set, taken as false.
+with_argument = true
+# url_encode should be true when calling webpages; this ensures special characters in url being readable to browsers; taken as false if not explicitly set
+url_encode = true
+# run cmd in a forked shell as opposed to as a child process (simply by prepending setsid -f to the configured cmd); useful for launching gui programs; taken as false if not explicitly set
+unbind_proc = true
+
+# fzf is needed to run below functions
+[[modules]]
+description = "desktop programs"
+prefix = "app"
+cmd = "fsel"
+
+[[modules]]
+description = "power menu"
+prefix = "po"
+cmd = """
+function power {
+if [[ -n $1 ]]; then
+case $1 in
+"logout") session=`loginctl session-status | head -n 1 | awk '{print $1}'`; loginctl terminate-session $session ;;
+"suspend") systemctl suspend ;;
+"hibernate") systemctl hibernate ;;
+"reboot") systemctl reboot ;;
+"shutdown") systemctl poweroff ;;
+esac fi }
+power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --cycle --gutter ' ' --color 'pointer:1,info:8,separator:8,scrollbar:0' | tail -1)
+"""
+
+[[modules]]
+description = "run commands"
+prefix = "sh"
+# bad hack, made the shell interactive so that interactive defaults like aliases
+# are available
+cmd = """
+ghostty -e bash -i -c "{}"
+"""
+with_argument = true
+unbind_proc = true
+
+[[modules]]
+description = "search archwiki"
+prefix = "aw"
+cmd = "xdg-open https://wiki.archlinux.org/index.php?search='{}'"
+with_argument = true
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "search packages"
+prefix = "pac"
+cmd = "xdg-open https://archlinux.org/packages/?q='{}'"
+with_argument = true
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "search the AUR"
+prefix = "aur"
+cmd = "xdg-open https://aur.archlinux.org/packages?K='{}'"
+with_argument = true
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "cambridge dict"
+prefix = "dc"
+cmd = "xdg-open 'https://dictionary.cambridge.org/dictionary/english/{}'"
+with_argument = true
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "open files (fzf)"
+prefix = "fo"
+cmd = """
+fd -C $HOME --type d 2>/dev/null | fzf --cycle --gutter ' ' --color 'pointer:1,info:8,separator:8,scrollbar:0' | setsid -f xargs -r -I [] xdg-open '[]'
+"""
+
+[[modules]]
+description = "open dirs (yazi)"
+prefix = "yz"
+cmd = """
+fd -C $HOME --type d 2>/dev/null | fzf --cycle --gutter ' ' --color 'pointer:1,info:8,separator:8,scrollbar:0' | xargs -r -I [] setsid -f "$(echo $TERM | sed 's/xterm-//g')" -e yazi '[]'
+"""

@@ -1,0 +1,46 @@
+# Colors
+highlight_color = "SeaGreen"
+cursor = "█"
+
+# App launcher
+terminal_launcher = "ghostty -e"
+
+# Shared launcher, dmenu, and cclip visual settings
+pin_color = "rgb(255,165,0)"       # Color for pin icon (orange)
+pin_icon = "📌"                     # Icon for pinned apps
+items_background_color = "Reset"  # Items panel background
+items_selection_background_color = "Reset" # Selected row background
+items_selection_rounded = false    # Optional half-cell rounded row ends
+main_background_color = "Reset"   # Main info panel background
+input_background_color = "Reset"  # Input panel background
+show_main_border = true
+show_items_border = true
+show_input_border = true
+show_panel_titles = true
+show_input_count = true
+show_input_prompt = true
+show_selection_marker = true
+selection_marker = ">"              # Any marker text, for example "█"
+show_pin_icons = true
+input_panel_style = "classic"       # "classic" or "command"
+
+[app_launcher]
+filter_desktop = true              # Filter apps by desktop environment
+filter_actions = false            # Keep desktop actions visible; set true to hide them
+auto_hide_duplicates = true      # Opt in to deterministic duplicate suppression
+list_executables_in_path = false   # Show CLI tools from $PATH
+match_mode = "fuzzy"               # "fuzzy" or "exact"
+ranking_mode = "frecency"          # "frecency", "recency", or "frequency"
+pinned_order = "ranking"           # "ranking", "alphabetical", "oldest_pinned", "newest_pinned"
+icon_mode = "preview"               # "preview", "list", "both", or "none"
+icon_position = "left"              # Preview: "left", "center", or "right"
+icon_preview_width_percent = 40
+icon_list_width = 4                  # Terminal columns reserved beside each app
+icon_list_height = 2                 # Terminal rows per app when list icons are enabled
+icon_list_gap = 1                    # Columns between each list icon and label
+icon_list_vertical_align_percent = 0 # Offset artwork vertically; negatives overflow upward
+icon_arrow_before = false            # Put selection arrow before left-side list icons
+icon_size = 128
+icon_horizontal_align_percent = 50  # Fine adjustment inside the chosen icon area
+icon_vertical_align_percent = 50    # Fine adjustment inside the preview icon area
+# icon_theme = "Papirus-Dark"       # Optional override; desktop settings are detected by default
