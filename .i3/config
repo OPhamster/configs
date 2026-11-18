@@ -89,7 +89,11 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Start Applications
-bindsym $mod+Return exec $terminal --command="direct:/usr/bin/tmux new-session"
+bindsym $mod+Return exec $terminal --command="/usr/bin/tmux new-session"
+# We do this separately for labs, to prevent overlapping tmux sessions, which are
+# allowed, but unnecessary.
+bindsym $mod+Ctrl+Return exec $terminal --title="work@labs" --command="bash -i -c 'ssh emacs@labs.lxd'"
+
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 
