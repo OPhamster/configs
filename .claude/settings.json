@@ -1,4 +1,5 @@
 {
+    "permissions": { "defaultMode": "default" },
     "statusLine": {
         "type": "command",
         "command": "~/scripts/claude_statusline.sh",
